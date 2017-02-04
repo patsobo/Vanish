@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.right = ord('D');
+            <string>///constants
+global.right = ord('D');
 global.left = ord('A');
 global.up = ord('W');
 global.down = ord('S');
@@ -36,7 +37,12 @@ global.throw = mb_left;
 move_speed = 3;
 air_move_speed = 2;
 throw_speed = 25;//???
-jump_speed = 20;
+
+jump_speed = 15;
+jump_time = 8;
+steps = 0;
+
+
 dampening = .9;//smaller is more dampening
 frict = .9;//changes the dampening when in contact with the ground
 height=36;
@@ -45,7 +51,7 @@ width=18;
 gravity_x = 0;
 gravity_y =1;
 
-can_jump = true;
+jumping = false;
 vel_x=0;
 vel_y=0;
 </string>
@@ -70,23 +76,97 @@ vel_y=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//key presses
+            <string>///Physics
+
+//Gravity
+vel_x+=gravity_x;
+vel_y+=gravity_y;
+
+//Dampening
+if(abs(vel_x) &lt; 1)
+    vel_x=0;
+vel_x*=dampening;
+//if on ground apply friction
+if( place_meeting(x,y+1,obj_wall))
+    vel_x*=frict;
+vel_y*=dampening;
+
+
+
+//Update position
+if(place_meeting(x+vel_x,y,obj_wall))
+{
+    while(!place_meeting(x+sign(vel_x),y,obj_wall))
+    {
+        x += sign(vel_x);
+    }
+    vel_x = 0;
+}
+x+=vel_x;
+
+
+if(place_meeting(x,y+vel_y,obj_wall))
+{
+    while(!place_meeting(x,y+sign(vel_y),obj_wall))
+    {
+        y += sign(vel_y);
+    }
+    vel_y = 0;
+}
+y+=vel_y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///key presses
 if( keyboard_check(global.left))
 {
-    if( place_meeting(x,y+1,obj_wall))
+    if( place_meeting(x,y+1,obj_wall))// On ground?
         vel_x-=move_speed;
     vel_x-=air_move_speed ;
 }
+
+if(keyboard_check_pressed(global.jump) &amp;&amp; place_meeting(x,y+1,obj_wall))
+{
+    show_debug_message("starting jump");
+    jumping = true;
+    steps = 0;
+}
+if(jumping) {
+    steps+=1;
+    if(steps % 2 == 1)
+        vel_y-=(jump_speed/steps);
+}
+if(steps&gt; jump_time || keyboard_check_released(global.jump) || place_meeting(x,y-1,obj_wall)){
+    jumping = false
+}
 if( keyboard_check(global.right))
 {
-    if( place_meeting(x,y+1,obj_wall))
+    if( place_meeting(x,y+1,obj_wall))// On ground?
         vel_x+=move_speed;
     vel_x+=air_move_speed ;
 }
-if( place_meeting(x,y+1,obj_wall) &amp;&amp; keyboard_check(global.jump))
-{
-    vel_y-=jump_speed ;
-}
+
+//if( (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+height,obj_wall)) &amp;&amp; vel_y &lt;= 0 &amp;&amp; keyboard_check(global.jump))
+//{
+//    vel_y-=jump_speed ;
+//}
 if(mouse_check_button_pressed(global.throw))
 {
     var inst = instance_create(x,y,obj_axe);
@@ -140,42 +220,6 @@ if(keyboard_check(global.right_portal))
 
 
 
-//Gravity
-vel_x+=gravity_x;
-vel_y+=gravity_y;
-
-//Dampening
-if(abs(vel_x) &lt; 1)
-    vel_x=0;
-vel_x*=dampening;
-//if on ground apply friction
-if( place_meeting(x,y+1,obj_wall))
-    vel_x*=frict;
-vel_y*=dampening;
-
-
-
-//Update position
-if(place_meeting(x+vel_x,y,obj_wall))
-{
-    while(!place_meeting(x+sign(vel_x),y,obj_wall))
-    {
-        x += sign(vel_x);
-    }
-    vel_x = 0;
-}
-x+=vel_x;
-
-
-if(place_meeting(x,y+vel_y,obj_wall))
-{
-    while(!place_meeting(x,y+sign(vel_y),obj_wall))
-    {
-        y += sign(vel_y);
-    }
-    vel_y = 0;
-}
-y+=vel_y;
 </string>
           </argument>
         </arguments>
