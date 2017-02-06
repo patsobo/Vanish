@@ -8,21 +8,29 @@
   <sprites name="sprites">
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\sprite1</sprite>
-    <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_walking</sprite>
     <sprite>sprites\spr_axe</sprite>
     <sprite>sprites\spr_left_portal</sprite>
     <sprite>sprites\spr_right_portal</sprite>
+    <sprite>sprites\spr_standing</sprite>
+    <sprite>sprites\spr_skull</sprite>
+    <sprite>sprites\spr_skull_aggro</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bk_gameOver</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_wall</object>
     <object>objects\obj_player</object>
     <object>objects\obj_axe</object>
     <object>objects\obj_portal</object>
+    <object>objects\obj_skull</object>
+    <object>objects\obj_fade</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\gameOver</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
