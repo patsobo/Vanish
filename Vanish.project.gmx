@@ -17,7 +17,7 @@
     <sprite>sprites\spr_skull_aggro</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bk_gameOver</background>
+    <background>background\bg_gameOver</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
