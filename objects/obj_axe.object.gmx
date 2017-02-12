@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>dampening = .95;//smaller is more dampening
 frict = 0;
-spin_speed = 10;
+spin_speed = 20;
 height=12;
 width=12;
 

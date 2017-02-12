@@ -15,6 +15,7 @@
     <sprite>sprites\spr_standing</sprite>
     <sprite>sprites\spr_skull</sprite>
     <sprite>sprites\spr_skull_aggro</sprite>
+    <sprite>sprites\spr_hitbox_player</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>

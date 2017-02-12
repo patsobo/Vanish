@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>x_vel = 0;
+y_vel = 0;
+move_speed = .3;
+dampening = .95;
+</string>
           </argument>
         </arguments>
       </action>
@@ -48,15 +52,19 @@
           <argument>
             <kind>1</kind>
             <string>if distance_to_object(obj_player) &lt; 150 {
+    var delx = obj_player.x-x;
+    var dely = y-obj_player.y;
+    x_vel+= delx/(abs(delx)+abs(dely)) * move_speed;
+    y_vel-= dely/(abs(delx)+abs(dely)) * move_speed;
     sprite_index = spr_skull_aggro;
-    speed = 2;
+    //speed = 2;
     if (obj_player.x &lt; x){
         image_xscale = -1;
     }
     else {
         image_xscale = 1;
     }
-    move_towards_point(obj_player.x, obj_player.y, speed);
+//    move_towards_point(obj_player.x, obj_player.y, speed);
 }
 
 else {
@@ -65,10 +73,31 @@ else {
     speed = 0;
 }
 
+if(abs(x_vel) &lt; .01)
+    x_vel=0;
+x_vel*=dampening;
+y_vel*=dampening;
+
+if(place_meeting(x+x_vel,y,obj_wall))
+{
+    while(!place_meeting(x+sign(x_vel),y,obj_wall))
+    {
+        x += sign(x_vel);
+    }
+    x_vel = 0;
+}
+x+=x_vel;
 
 
-
-
+if(place_meeting(x,y+y_vel,obj_wall))
+{
+    while(!place_meeting(x,y+sign(y_vel),obj_wall))
+    {
+        y += sign(y_vel);
+    }
+    y_vel = 0;
+}
+y+=y_vel;
 </string>
           </argument>
         </arguments>

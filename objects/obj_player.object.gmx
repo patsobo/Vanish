@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_hitbox_player</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -34,7 +34,7 @@ global.left_portal = ord('Q');
 global.right_portal = ord('E');
 global.jump = ord('W');
 global.throw = mb_left;
-move_speed = 1.5;
+move_speed = .75;
 air_move_speed = 2;
 throw_speed = 25;//???
 
