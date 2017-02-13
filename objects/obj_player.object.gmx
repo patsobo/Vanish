@@ -38,8 +38,8 @@ move_speed = .75;
 air_move_speed = 2;
 throw_speed = 25;//???
 
-jump_speed = 15;
-jump_time = 8;
+jump_speed = 12;
+jump_time = 12;
 steps = 0;
 
 

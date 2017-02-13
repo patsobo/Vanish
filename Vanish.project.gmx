@@ -16,11 +16,17 @@
     <sprite>sprites\spr_skull</sprite>
     <sprite>sprites\spr_skull_aggro</sprite>
     <sprite>sprites\spr_hitbox_player</sprite>
+    <sprite>sprites\spr_box</sprite>
+    <sprite>sprites\spr_box_explode</sprite>
+    <sprite>sprites\spr_bat</sprite>
+    <sprite>sprites\spr_bat_awake</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path_bat</path>
+  </paths>
   <objects name="objects">
     <object>objects\obj_wall</object>
     <object>objects\obj_player</object>
@@ -28,6 +34,8 @@
     <object>objects\obj_portal</object>
     <object>objects\obj_skull</object>
     <object>objects\obj_fade</object>
+    <object>objects\obj_box</object>
+    <object>objects\obj_bat</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
