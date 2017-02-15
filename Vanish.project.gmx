@@ -20,6 +20,10 @@
     <sprite>sprites\spr_box_explode</sprite>
     <sprite>sprites\spr_bat</sprite>
     <sprite>sprites\spr_bat_awake</sprite>
+    <sprite>sprites\spr_window</sprite>
+    <sprite>sprites\spr_window_lightning</sprite>
+    <sprite>sprites\spr_window_rain</sprite>
+    <sprite>sprites\spr_reload</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
@@ -36,6 +40,8 @@
     <object>objects\obj_fade</object>
     <object>objects\obj_box</object>
     <object>objects\obj_bat</object>
+    <object>objects\obj_window</object>
+    <object>objects\obj_reload</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

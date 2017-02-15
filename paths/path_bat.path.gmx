@@ -15,5 +15,11 @@
     <point>144,32,100</point>
     <point>176,16,100</point>
     <point>208,0,100</point>
+    <point>224,-16,100</point>
+    <point>240,-48,100</point>
+    <point>256,-96,100</point>
+    <point>272,-160,100</point>
+    <point>288,-288,100</point>
+    <point>304,-560,100</point>
   </points>
 </path>

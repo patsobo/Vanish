@@ -54,6 +54,19 @@ gravity_y =1;
 jumping = false;
 vel_x=0;
 vel_y=0;
+
+if (floor(random_range(0,10)) % 2 == 0) {
+    with(obj_window){
+        sprite_index = spr_window_rain;
+        image_speed = .3;
+    }
+}
+
+else {
+    with(obj_window){
+        sprite_index = spr_window;
+    }
+}
 </string>
           </argument>
         </arguments>
