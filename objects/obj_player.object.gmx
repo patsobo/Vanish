@@ -55,7 +55,10 @@ jumping = false;
 vel_x=0;
 vel_y=0;
 
-if (floor(random_range(0,10)) % 2 == 0) {
+randomize();
+rain_counter = random(750);
+//if (floor(random_range(0,10)) % 2 == 0) {
+if (true) {
     with(obj_window){
         sprite_index = spr_window_rain;
         image_speed = .3;
@@ -127,6 +130,24 @@ if(place_meeting(x,y+vel_y,obj_wall))
     vel_y = 0;
 }
 y+=vel_y;
+
+//lightning
+rain_counter -= 1;
+
+show_debug_message(rain_counter);
+    if (obj_player.rain_counter &lt; 0){
+        obj_player.rain_counter = random(750);
+        if (obj_window.sprite_index == spr_window_rain ) {
+            obj_window.sprite_index = spr_window_lightning;
+            //image_speed = .4;
+        }
+    }
+    
+    if (obj_window.image_index == obj_window.image_number - 1 &amp;&amp; obj_window.sprite_index == spr_window_lightning){
+        obj_window.sprite_index = spr_window_rain;
+    }
+
+
 </string>
           </argument>
         </arguments>
@@ -250,6 +271,33 @@ if(keyboard_check(global.right_portal))
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
+    shader_set(shader_silhouette);
+}
+draw_self();
+shader_reset();
 </string>
           </argument>
         </arguments>

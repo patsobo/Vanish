@@ -7,7 +7,6 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_wall</sprite>
-    <sprite>sprites\sprite1</sprite>
     <sprite>sprites\spr_walking</sprite>
     <sprite>sprites\spr_axe</sprite>
     <sprite>sprites\spr_left_portal</sprite>
@@ -31,6 +30,10 @@
   <paths name="paths">
     <path>paths\path_bat</path>
   </paths>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
+    <shader type="GLSLES">shaders\shader_white.shader</shader>
+  </shaders>
   <objects name="objects">
     <object>objects\obj_wall</object>
     <object>objects\obj_player</object>
