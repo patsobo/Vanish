@@ -26,6 +26,8 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
+    <background>background\bg_stone</background>
+    <background>background\bg_stone_light</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path_bat</path>

@@ -37,11 +37,16 @@ global.throw = mb_left;
 move_speed = .75;
 air_move_speed = 2;
 throw_speed = 25;//???
+throw_momentum_percent = .5;
 
 jump_speed = 12;
 jump_time = 12;
 steps = 0;
 
+background_index[0] = bg_stone;
+background_visible[0] = true;
+background_index[1] = bg_stone_light;
+background_visible[1] = false;
 
 dampening = .9;//smaller is more dampening
 frict = .9;//changes the dampening when in contact with the ground
@@ -134,7 +139,7 @@ y+=vel_y;
 //lightning
 rain_counter -= 1;
 
-show_debug_message(rain_counter);
+//show_debug_message(rain_counter);
     if (obj_player.rain_counter &lt; 0){
         obj_player.rain_counter = random(750);
         if (obj_window.sprite_index == spr_window_rain ) {
@@ -226,8 +231,8 @@ if(mouse_check_button_pressed(global.throw))
         var del_x = mouse_x-x;
         var del_y = mouse_y-y;
         var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-        vel_x=other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
-        vel_y=other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
+        vel_x=other.throw_momentum_percent*other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
+        vel_y=other.throw_momentum_percent*other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
         image_xscale=sign(vel_x);
     }
 }
@@ -295,7 +300,11 @@ if(keyboard_check(global.right_portal))
             <kind>1</kind>
             <string>if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
     shader_set(shader_silhouette);
+    background_visible[1] = true;
+    background_visible[0] = false;
 }
+    background_visible[1] = false;
+    background_visible[0] = true;
 draw_self();
 shader_reset();
 </string>
