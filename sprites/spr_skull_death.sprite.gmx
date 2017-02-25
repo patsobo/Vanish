@@ -3,14 +3,14 @@
   <type>0</type>
   <xorig>8</xorig>
   <yorigin>7</yorigin>
-  <colkind>0</colkind>
+  <colkind>1</colkind>
   <coltolerance>0</coltolerance>
-  <sepmasks>-1</sepmasks>
+  <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>15</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>14</bbox_bottom>
+  <bbox_bottom>13</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -18,9 +18,12 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>16</width>
-  <height>15</height>
+  <height>14</height>
   <frames>
-    <frame index="0">images\spr_skull_0.png</frame>
-    <frame index="1">images\spr_skull_1.png</frame>
+    <frame index="0">images\spr_skull_death_0.png</frame>
+    <frame index="1">images\spr_skull_death_1.png</frame>
+    <frame index="2">images\spr_skull_death_2.png</frame>
+    <frame index="3">images\spr_skull_death_3.png</frame>
+    <frame index="4">images\spr_skull_death_4.png</frame>
   </frames>
 </sprite>

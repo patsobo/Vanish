@@ -29,6 +29,8 @@ void main()
     if ((v_vColour * texture2D( gm_BaseTexture, v_vTexcoord )).a < 1.0){
         gl_FragColor = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
     }
+    else if ((v_vColour*texture2D( gm_BaseTexture, v_vTexcoord )).r == 1.0 && (v_vColour*texture2D( gm_BaseTexture, v_vTexcoord )).b == 0.0 && (v_vColour*texture2D( gm_BaseTexture, v_vTexcoord )).g == 0.0)
+        gl_FragColor = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
     else{
         gl_FragColor = vec4(0.0,0.0,0.0,1.0);
     }

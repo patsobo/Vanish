@@ -23,6 +23,8 @@
     <sprite>sprites\spr_window_lightning</sprite>
     <sprite>sprites\spr_window_rain</sprite>
     <sprite>sprites\spr_reload</sprite>
+    <sprite>sprites\spr_skull_death</sprite>
+    <sprite>sprites\spr_candles</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
@@ -47,6 +49,7 @@
     <object>objects\obj_bat</object>
     <object>objects\obj_window</object>
     <object>objects\obj_reload</object>
+    <object>objects\obj_candles</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
