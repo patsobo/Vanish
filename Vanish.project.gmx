@@ -25,6 +25,7 @@
     <sprite>sprites\spr_reload</sprite>
     <sprite>sprites\spr_skull_death</sprite>
     <sprite>sprites\spr_candles</sprite>
+    <sprite>sprites\spr_swirl</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
@@ -44,12 +45,13 @@
     <object>objects\obj_axe</object>
     <object>objects\obj_portal</object>
     <object>objects\obj_skull</object>
-    <object>objects\obj_fade</object>
     <object>objects\obj_box</object>
     <object>objects\obj_bat</object>
     <object>objects\obj_window</object>
     <object>objects\obj_reload</object>
     <object>objects\obj_candles</object>
+    <object>objects\obj_fade</object>
+    <object>objects\obj_control</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

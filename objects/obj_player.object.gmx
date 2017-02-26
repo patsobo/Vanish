@@ -44,11 +44,6 @@ jump_speed = 12;
 jump_time = 12;
 steps = 0;
 
-background_index[0] = bg_stone;
-background_visible[0] = true;
-background_index[1] = bg_stone_light;
-background_visible[1] = false;
-
 dampening = .9;//smaller is more dampening
 frict = .9;//changes the dampening when in contact with the ground
 height=36;
@@ -60,22 +55,6 @@ gravity_y =1;
 jumping = false;
 vel_x=0;
 vel_y=0;
-
-randomize();
-rain_counter = random(750);
-//if (floor(random_range(0,10)) % 2 == 0) {
-if (true) {
-    with(obj_window){
-        sprite_index = spr_window_rain;
-        image_speed = .3;
-    }
-}
-
-else {
-    with(obj_window){
-        sprite_index = spr_window;
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -136,23 +115,6 @@ if(place_meeting(x,y+vel_y,obj_wall))
     vel_y = 0;
 }
 y+=vel_y;
-
-//lightning
-rain_counter -= 1;
-
-//show_debug_message(rain_counter);
-    if (obj_player.rain_counter &lt; 0){
-        obj_player.rain_counter = random(750);
-        if (obj_window.sprite_index == spr_window_rain ) {
-            obj_window.sprite_index = spr_window_lightning;
-            //image_speed = .4;
-        }
-    }
-    
-    if (obj_window.image_index == obj_window.image_number - 1 &amp;&amp; obj_window.sprite_index == spr_window_lightning){
-        obj_window.sprite_index = spr_window_rain;
-    }
-
 
 </string>
           </argument>
@@ -302,11 +264,7 @@ if(keyboard_check(global.right_portal))
             <kind>1</kind>
             <string>if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
     shader_set(shader_silhouette);
-    background_visible[1] = true;
-    background_visible[0] = false;
 }
-    background_visible[1] = false;
-    background_visible[0] = true;
 draw_self();
 shader_reset();
 </string>

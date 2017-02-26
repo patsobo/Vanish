@@ -65,6 +65,7 @@ if distance_to_object(obj_player) &lt; 150 {
     else {
         image_xscale = 1;
     }
+
 //    move_towards_point(obj_player.x, obj_player.y, speed);
 }
 
@@ -140,16 +141,15 @@ image_speed = .35
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != spr_skull_death) {
-with(obj_player)
+            <string>if (obj_skull.sprite_index != spr_skull_death){
     instance_destroy()
-instance_create(0,0, obj_fade)
+    instance_create(0,0,obj_fade)
 }
 </string>
           </argument>
@@ -174,7 +174,7 @@ instance_create(0,0, obj_fade)
           <argument>
             <kind>1</kind>
             <string>if (sprite_index == spr_skull_death) {
-    instance_destroy();
+    instance_destroy()
 }
 </string>
           </argument>
