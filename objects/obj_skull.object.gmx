@@ -80,9 +80,9 @@ if(abs(x_vel) &lt; .01)
 x_vel*=dampening;
 y_vel*=dampening;
 
-if(place_meeting(x+x_vel,y,obj_wall))
+if(place_meeting(x+x_vel,y,obj_wall) || place_meeting(x+x_vel,y,obj_skull))
 {
-    while(!place_meeting(x+sign(x_vel),y,obj_wall))
+    while(!place_meeting(x+sign(x_vel),y,obj_wall) &amp;&amp; !place_meeting(x+sign(x_vel),y,obj_skull))
     {
         x += sign(x_vel);
     }
@@ -91,9 +91,9 @@ if(place_meeting(x+x_vel,y,obj_wall))
 x+=x_vel;
 
 
-if(place_meeting(x,y+y_vel,obj_wall))
+if(place_meeting(x,y+y_vel,obj_wall) || place_meeting(x,y+y_vel,obj_skull))
 {
-    while(!place_meeting(x,y+sign(y_vel),obj_wall))
+    while(!place_meeting(x,y+sign(y_vel),obj_wall)&amp;&amp; !place_meeting(x,y+sign(y_vel),obj_skull))
     {
         y += sign(y_vel);
     }
