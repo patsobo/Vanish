@@ -38,7 +38,8 @@ move_speed = .75;
 air_move_speed = 2;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
-ammo = 5;
+MAX_AMMO = 5;
+ammo = MAX_AMMO;
 
 jump_speed = 12;
 jump_time = 12;
@@ -188,7 +189,8 @@ if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
 //}
 if(mouse_check_button_pressed(global.throw))
 {
-    if (instance_number(obj_axe) &lt; ammo){
+    if (ammo &gt; 0){
+        ammo--;
         var inst = instance_create(x,y,obj_axe);
         with(inst){
             var del_x = mouse_x-x;
@@ -200,7 +202,38 @@ if(mouse_check_button_pressed(global.throw))
         }
     }
 }
-if(keyboard_check(global.left_portal))
+
+if (keyboard_check(global.left_portal)){
+    if (instance_number(obj_moving_portal) &lt; 1){
+        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
+        with(inst){
+            sprite_index = spr_moving_left_portal;
+            var x_vec = mouse_x - x;
+            var y_vec = mouse_y - y;
+            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+            image_angle = radtodeg(arctan(vel_y / -vel_x));
+        }
+    }
+}
+
+if (keyboard_check(global.right_portal)){
+    if (instance_number(obj_moving_portal) &lt; 1){
+        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
+        with(inst){
+            sprite_index = spr_moving_right_portal;
+            var x_vec = mouse_x - x;
+            var y_vec = mouse_y - y;
+            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+            image_angle = radtodeg(arctan(vel_y / -vel_x));
+        }
+    }
+}
+
+/*if(keyboard_check(global.left_portal))
 {
     with(obj_portal)
     {
@@ -235,7 +268,7 @@ if(keyboard_check(global.right_portal))
         vel_y=other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
         sprite_index=spr_right_portal;
     }
-}
+}*/
 
 
 

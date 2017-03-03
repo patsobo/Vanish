@@ -6,26 +6,39 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_wall</sprite>
-    <sprite>sprites\spr_walking</sprite>
-    <sprite>sprites\spr_axe</sprite>
-    <sprite>sprites\spr_left_portal</sprite>
-    <sprite>sprites\spr_right_portal</sprite>
-    <sprite>sprites\spr_standing</sprite>
-    <sprite>sprites\spr_skull</sprite>
-    <sprite>sprites\spr_skull_aggro</sprite>
-    <sprite>sprites\spr_hitbox_player</sprite>
-    <sprite>sprites\spr_box</sprite>
-    <sprite>sprites\spr_box_explode</sprite>
-    <sprite>sprites\spr_bat</sprite>
-    <sprite>sprites\spr_bat_awake</sprite>
-    <sprite>sprites\spr_window</sprite>
-    <sprite>sprites\spr_window_lightning</sprite>
-    <sprite>sprites\spr_window_rain</sprite>
-    <sprite>sprites\spr_reload</sprite>
-    <sprite>sprites\spr_skull_death</sprite>
-    <sprite>sprites\spr_candles</sprite>
-    <sprite>sprites\spr_swirl</sprite>
+    <sprites name="Player">
+      <sprite>sprites\spr_walking</sprite>
+      <sprite>sprites\spr_standing</sprite>
+      <sprite>sprites\spr_hitbox_player</sprite>
+      <sprite>sprites\spr_axe</sprite>
+      <sprite>sprites\spr_left_portal</sprite>
+      <sprite>sprites\spr_right_portal</sprite>
+      <sprite>sprites\spr_moving_left_portal</sprite>
+      <sprite>sprites\spr_moving_right_portal</sprite>
+      <sprite>sprites\spr_flat_left_portal</sprite>
+      <sprite>sprites\spr_flat_right_portal</sprite>
+    </sprites>
+    <sprites name="Enemy">
+      <sprite>sprites\spr_bat_awake</sprite>
+      <sprite>sprites\spr_bat</sprite>
+      <sprite>sprites\spr_skull</sprite>
+      <sprite>sprites\spr_skull_aggro</sprite>
+      <sprite>sprites\spr_skull_death</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprite>sprites\spr_window</sprite>
+      <sprite>sprites\spr_window_rain</sprite>
+      <sprite>sprites\spr_window_lightning</sprite>
+      <sprite>sprites\spr_candles</sprite>
+      <sprite>sprites\spr_swirl</sprite>
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_box_explode</sprite>
+      <sprite>sprites\spr_weapon_rack</sprite>
+      <sprite>sprites\spr_box</sprite>
+    </sprites>
+    <sprites name="Control">
+      <sprite>sprites\spr_reload</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
@@ -40,18 +53,30 @@
     <shader type="GLSLES">shaders\shader_white.shader</shader>
   </shaders>
   <objects name="objects">
-    <object>objects\obj_wall</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_axe</object>
-    <object>objects\obj_portal</object>
-    <object>objects\obj_skull</object>
-    <object>objects\obj_box</object>
-    <object>objects\obj_bat</object>
-    <object>objects\obj_window</object>
-    <object>objects\obj_reload</object>
-    <object>objects\obj_candles</object>
-    <object>objects\obj_fade</object>
-    <object>objects\obj_control</object>
+    <objects name="Player">
+      <object>objects\obj_axe</object>
+      <object>objects\obj_portal_left</object>
+      <object>objects\obj_portal_right</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_moving_portal</object>
+    </objects>
+    <objects name="Enemy">
+      <object>objects\obj_skull</object>
+      <object>objects\obj_bat</object>
+    </objects>
+    <objects name="Environment">
+      <object>objects\obj_box</object>
+      <object>objects\obj_weapon_rack</object>
+      <object>objects\obj_candles</object>
+      <object>objects\obj_window</object>
+      <object>objects\obj_wall</object>
+    </objects>
+    <objects name="Control">
+      <object>objects\obj_control</object>
+      <object>objects\obj_fade</object>
+      <object>objects\obj_reload</object>
+      <object>objects\obj_check</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
