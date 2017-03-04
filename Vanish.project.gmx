@@ -24,6 +24,7 @@
       <sprite>sprites\spr_skull</sprite>
       <sprite>sprites\spr_skull_aggro</sprite>
       <sprite>sprites\spr_skull_death</sprite>
+      <sprite>sprites\spr_axe_grunt</sprite>
     </sprites>
     <sprites name="Environment">
       <sprite>sprites\spr_window</sprite>
@@ -35,11 +36,18 @@
       <sprite>sprites\spr_box_explode</sprite>
       <sprite>sprites\spr_weapon_rack</sprite>
       <sprite>sprites\spr_box</sprite>
+      <sprite>sprites\spr_door</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
       <sprite>sprites\spr_play_button</sprite>
       <sprite>sprites\spr_back_button</sprite>
+    </sprites>
+    <sprites name="Boss">
+      <sprite>sprites\spr_fire_wall</sprite>
+      <sprite>sprites\spr_crystal</sprite>
+      <sprite>sprites\spr_crystal_dead</sprite>
+      <sprite>sprites\spr_boss</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -50,9 +58,11 @@
   </backgrounds>
   <paths name="paths">
     <path>paths\path_bat</path>
+    <path>paths\path_boss_1</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\screenshot.gml</script>
+    <script>scripts\fuck_em_up.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -69,6 +79,7 @@
     <objects name="Enemy">
       <object>objects\obj_skull</object>
       <object>objects\obj_bat</object>
+      <object>objects\obj_axe_grunt</object>
     </objects>
     <objects name="Environment">
       <object>objects\obj_box</object>
@@ -76,6 +87,7 @@
       <object>objects\obj_candles</object>
       <object>objects\obj_window</object>
       <object>objects\obj_wall</object>
+      <object>objects\obj_door</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -84,13 +96,19 @@
       <object>objects\obj_button</object>
       <object>objects\obj_main_menu</object>
       <object>objects\obj_pause</object>
+      <object>objects\obj_boss_control</object>
+    </objects>
+    <objects name="Boss">
+      <object>objects\obj_fire_wall</object>
+      <object>objects\obj_crystal</object>
+      <object>objects\obj_boss</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\boss_room</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
-    <room>rooms\boss_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
