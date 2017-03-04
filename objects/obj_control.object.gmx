@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.reset = vk_escape;
+            <string>global.pause = vk_escape;
+global.pauseSurface = null;
+paused = false;
+pause_held_down = false;
 
 randomize();
 rain_counter = random(750);
@@ -59,22 +62,40 @@ with(obj_window){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//lightning
-rain_counter -= 1;
-
-//show_debug_message(rain_counter);
-if (rain_counter &lt; 0){
-    rain_counter = random(750);
-    if (obj_window.sprite_index == spr_window_rain ) {
-        obj_window.sprite_index = spr_window_lightning;
+            <string>if (!paused){
+    //lightning
+    rain_counter -= 1;
+    
+    //show_debug_message(rain_counter);
+    if (rain_counter &lt; 0){
+        rain_counter = random(750);
+        if (obj_window.sprite_index == spr_window_rain ) {
+            obj_window.sprite_index = spr_window_lightning;
+        }
+    }
+    if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index == image_number){
+        obj_window.sprite_index = spr_window_rain;
     }
 }
-if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index == image_number){
-    obj_window.sprite_index = spr_window_rain;
-}
 
-if (keyboard_check(global.reset)){
-    instance_create(0,0,obj_fade)
+if (keyboard_check(global.pause) &amp;&amp; !pause_held_down){
+    pause_held_down = true;
+    if (!paused){
+        paused = true;
+        global.pauseSurface = screenshot();
+        instance_deactivate_all(true);
+        instance_create(0,0,obj_pause);
+    } else {
+        instance_activate_all();
+        //sprite_delete(global.pauseSurface);
+        with(obj_pause){
+            instance_destroy();
+        }
+        paused = false;
+    }
+} else {
+    if (!keyboard_check(global.pause))
+        pause_held_down = false;
 }
 </string>
           </argument>
@@ -98,16 +119,17 @@ if (keyboard_check(global.reset)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_number(obj_player) &gt; 0){
-    var i
-    //for (i = 0; i &lt; (5 - instance_number(obj_axe)); i++){
-    for (i = 0; i &lt; obj_player.ammo; i++){
-        draw_sprite_ext(spr_axe, 0, 160*cos(i*pi/2/5), window_get_height() - 15 - 160*sin(i*pi/2/5),
-                        4.0, 4.0, -90+i*22.5, c_white, 1)
+            <string>if (!paused){
+    if (instance_number(obj_player) &gt; 0){
+        var i
+        //for (i = 0; i &lt; (5 - instance_number(obj_axe)); i++){
+        for (i = 0; i &lt; obj_player.ammo; i++){
+            draw_sprite_ext(spr_axe, 0, 160*cos(i*pi/2/5), window_get_height() - 15 - 160*sin(i*pi/2/5),
+                            4.0, 4.0, -90+i*22.5, c_white, 1)
+        }
     }
+    draw_sprite_ext(spr_swirl, 0, 10, window_get_height() - 115, 4.0, 4.0, 0, c_white, 1)
 }
-draw_sprite_ext(spr_swirl, 0, 10, window_get_height() - 115, 4.0, 4.0, 0, c_white, 1)
-
 </string>
           </argument>
         </arguments>

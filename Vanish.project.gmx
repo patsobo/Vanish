@@ -38,16 +38,22 @@
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
+      <sprite>sprites\spr_play_button</sprite>
+      <sprite>sprites\spr_back_button</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_gameOver</background>
+    <background>background\title</background>
     <background>background\bg_stone</background>
     <background>background\bg_stone_light</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path_bat</path>
   </paths>
+  <scripts name="scripts">
+    <script>scripts\screenshot.gml</script>
+  </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
     <shader type="GLSLES">shaders\shader_white.shader</shader>
@@ -75,12 +81,16 @@
       <object>objects\obj_control</object>
       <object>objects\obj_fade</object>
       <object>objects\obj_reload</object>
-      <object>objects\obj_check</object>
+      <object>objects\obj_button</object>
+      <object>objects\obj_main_menu</object>
+      <object>objects\obj_pause</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\menu</room>
     <room>rooms\gameOver</room>
+    <room>rooms\boss_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
