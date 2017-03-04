@@ -161,7 +161,7 @@ if (place_meeting(x + 1,y-10, obj_wall) || place_meeting(x - 1, y-10, obj_wall))
             <string>destroy = false;
 
 with(obj_axe){
-    if (vel_x != 0 &amp;&amp; vel_y != 0){
+    if (abs(vel_x) &gt;= 0.1 &amp;&amp; abs(vel_y) &gt;= 0.1){
         other.destroy = true;
     }
 }

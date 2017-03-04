@@ -2,14 +2,14 @@
 <sprite>
   <type>0</type>
   <xorig>16</xorig>
-  <yorigin>0</yorigin>
+  <yorigin>3</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>0</bbox_left>
-  <bbox_right>31</bbox_right>
-  <bbox_top>0</bbox_top>
+  <bbox_left>31</bbox_left>
+  <bbox_right>0</bbox_right>
+  <bbox_top>4</bbox_top>
   <bbox_bottom>0</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -18,8 +18,8 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>32</width>
-  <height>1</height>
+  <height>5</height>
   <frames>
-    <frame index="0">images\spr_flat_left_portal_0.png</frame>
+    <frame index="0">images\spr_hitbox_flat_portal_0.png</frame>
   </frames>
 </sprite>
