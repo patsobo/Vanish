@@ -54,6 +54,12 @@ vel_y = 0;
             <string>
 x = x + vel_x;
 y = y + vel_y;
+
+if (x &gt; room_width || x &lt; 0 || y &lt; 0 || y &gt; room_height){
+    instance_destroy();
+}
+
+
 var xn=x;
 var yn =y;
 var collision = 0;
