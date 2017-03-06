@@ -125,7 +125,7 @@ y+=y_vel;
             <kind>1</kind>
             <string>if (obj_skull.sprite_index != spr_skull_death){
     instance_destroy()
-    instance_create(0,0,obj_fade)
+    kill_player();
 }
 </string>
           </argument>

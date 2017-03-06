@@ -37,6 +37,7 @@
       <sprite>sprites\spr_weapon_rack</sprite>
       <sprite>sprites\spr_box</sprite>
       <sprite>sprites\spr_door</sprite>
+      <sprite>sprites\spr_barrier</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -63,6 +64,8 @@
   <scripts name="scripts">
     <script>scripts\screenshot.gml</script>
     <script>scripts\fuck_em_up.gml</script>
+    <script>scripts\kill_player.gml</script>
+    <script>scripts\check_collision.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -88,6 +91,7 @@
       <object>objects\obj_window</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_door</object>
+      <object>objects\obj_barrier</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -105,8 +109,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
     <room>rooms\boss_room</room>
+    <room>rooms\room0</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
   </rooms>
