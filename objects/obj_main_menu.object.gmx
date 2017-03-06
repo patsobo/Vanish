@@ -29,6 +29,10 @@
 button.sprite_index = spr_play_button;
 button.gotoRoom     = room0;
 
+var button = instance_create(room_width / 2, room_height * 7 / 10, obj_button);
+button.sprite_index = spr_boss_button;
+button.gotoRoom     = boss_room;
+
 /*var button_option = instance_create(room_width / 2, room_height * 7 / 10 + 20, obj_button);
 button_option.sprite_index = sprOptionsButton;
 button_option.gotoRoom     = roomOptions;*/

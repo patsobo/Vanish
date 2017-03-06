@@ -49,12 +49,14 @@
       <sprite>sprites\spr_reload</sprite>
       <sprite>sprites\spr_play_button</sprite>
       <sprite>sprites\spr_back_button</sprite>
+      <sprite>sprites\spr_boss_button</sprite>
     </sprites>
     <sprites name="Boss">
       <sprite>sprites\spr_fire_wall</sprite>
       <sprite>sprites\spr_crystal</sprite>
       <sprite>sprites\spr_crystal_dead</sprite>
       <sprite>sprites\spr_boss</sprite>
+      <sprite>sprites\spr_angry_boss</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -117,8 +119,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
     <room>rooms\boss_room</room>
+    <room>rooms\room0</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
   </rooms>

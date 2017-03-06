@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(place_meeting(x,y,obj_portal_left))
+            <string>portal_direction = 0;
+cooldown = 0;
+COOLDOWN_TIMER = 5;
+
+if(place_meeting(x,y,obj_portal_left))
 {
     instance_destroy();
 }
@@ -51,22 +55,44 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*
-if (instance_number(obj_portal_left) &gt; 0){
+            <string>if (instance_number(obj_portal_left) &gt; 0 &amp;&amp; cooldown == 0){
+    cooldown = COOLDOWN_TIMER
     var new_x;
     var new_y;
+    var x_offset = 0;
+    var y_offset = 0;
+    var other_facing;
 
+    
     with(obj_portal_left){
         other.new_x = x;
         other.new_y = y;
+        other_facing = portal_direction;
+        
+         switch(portal_direction){
+            case(0):
+                x_offset = 20;
+                break;
+            case(1):
+                y_offset = -30;
+                break;
+            case(2):
+                x_offset = -20;
+                break;
+            case(3):
+                y_offset = 30;
+                break;
+        }
     }
     
     with(obj_player){
-        x = other.new_x;
-        y = other.new_y;
+        show_debug_message(string(x_offset) + " " + string(y_offset) + " " + string(other_facing));
+        x = other.new_x + x_offset;
+        y = other.new_y + y_offset;
     }
 }
-*/
+if (cooldown &gt; 0)
+    cooldown--;
 </string>
           </argument>
         </arguments>

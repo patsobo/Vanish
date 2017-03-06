@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 30;
+            <string>//alarm[0] = 30;
 </string>
           </argument>
         </arguments>
@@ -71,7 +71,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>var count = 0;
+var dead = 0;
+    
+with(obj_crystal){
+    count++;
+    if (sprite_index == spr_crystal_dead){
+        dead++;
+    }
+}
+
+if (count == dead){
+    with(obj_boss){
+        sprite_index = spr_angry_boss;
+    }
+}
+</string>
           </argument>
         </arguments>
       </action>

@@ -29,6 +29,7 @@
 travel_speed = 30;
 vel_x = 0;
 vel_y = 0;
+facing = 0;
 </string>
           </argument>
         </arguments>
@@ -117,7 +118,7 @@ if(collision &gt;0)
                    }
                 break;
             case 2:
-                if(vel_x &gt;0) //up facing
+                if(vel_y &gt;0) //up facing
                    with(inst){
                    facing=1;
                    }
@@ -129,7 +130,10 @@ if(collision &gt;0)
             default:
                 break;
         }
-        with(inst){image_angle=90*(facing+1);}
+        with(inst){
+            image_angle=90*(facing+1);
+            portal_direction = facing;
+        }
     }
     instance_destroy();
 }

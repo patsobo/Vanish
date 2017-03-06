@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>sprite_index = spr_crystal_dead;
+
 </string>
           </argument>
         </arguments>
