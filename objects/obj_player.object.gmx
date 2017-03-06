@@ -34,8 +34,8 @@ global.left_portal = ord('Q');
 global.right_portal = ord('E');
 global.jump = ord('W');
 global.throw = mb_left;
-move_speed = .75;
-air_move_speed = 2;
+move_speed = .75/2;
+air_move_speed = 2/2;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
@@ -104,7 +104,7 @@ if (check_collision(x + vel_x, y))
     }
     vel_x = 0;
 }
-x+=vel_x / 2;
+x+=vel_x;
 
 
 if(check_collision(x,y+vel_y))
@@ -215,6 +215,7 @@ if (keyboard_check(global.left_portal)){
             vel_x = sign(x_vec)*abs(x_percent * travel_speed);
             vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
             image_angle = radtodeg(arctan(vel_y / -vel_x));
+            portal_id=0;
         }
     }
 }
@@ -230,6 +231,7 @@ if (keyboard_check(global.right_portal)){
             vel_x = sign(x_vec)*abs(x_percent * travel_speed);
             vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
             image_angle = radtodeg(arctan(vel_y / -vel_x));
+            portal_id=1;
         }
     }
 }

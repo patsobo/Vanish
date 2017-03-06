@@ -17,6 +17,10 @@
       <sprite>sprites\spr_moving_right_portal</sprite>
       <sprite>sprites\spr_flat_left_portal</sprite>
       <sprite>sprites\spr_flat_right_portal</sprite>
+      <sprites name="hitboxes">
+        <sprite>sprites\spr_player_hitbox</sprite>
+        <sprite>sprites\spr_hitbox_flat_portal</sprite>
+      </sprites>
     </sprites>
     <sprites name="Enemy">
       <sprite>sprites\spr_bat_awake</sprite>
