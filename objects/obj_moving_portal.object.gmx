@@ -51,86 +51,8 @@ vel_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-x = x + vel_x;
+            <string>x = x + vel_x;
 y = y + vel_y;
-var xn=x;
-var yn =y;
-var collision = 0;
-if(collision_point(x+vel_x,y,obj_wall,false,true))
-{
-    collision+=1;
-    while(!collision_point(xn+sign(vel_x),y,obj_wall,false,true))
-    {
-        xn += sign(vel_x);
-    }
-}
-
-if(collision_point(x,y+vel_y,obj_wall,false,true))
-{
-    collision+=2;
-    while(!collision_point(x,yn+sign(vel_y),obj_wall,false,true))
-    {
-        yn += sign(vel_y);
-    }
-}
-x=floor(xn);
-y=floor(yn);
-
-
-
-if(collision &gt;0)
-{
-    if(collision &lt;3){
-        show_debug_message(string(collision));
-        var inst;
-        if(portal_id==0)
-        {
-            with(obj_portal_left){
-                instance_destroy();
-            }
-            inst = instance_create(x,y,obj_portal_left);
-        }else
-        {
-            with(obj_portal_right){
-                instance_destroy();
-            }
-            inst = instance_create(x,y,obj_portal_right);
-            
-        }
-        
-        switch(collision){
-            case 1:
-                if(vel_x &gt;0)//left facing
-                   with(inst){
-                   facing=2;
-                   }   
-                else//right facing
-                   with(inst){
-                   facing=0;
-                   }
-                break;
-            case 2:
-                if(vel_x &gt;0) //up facing
-                   with(inst){
-                   facing=1;
-                   }
-                else//down facing
-                   with(inst){
-                   facing=3;
-                   }  
-                break;    
-            default:
-                break;
-        }
-        with(inst){image_angle=90*(facing+1);}
-    }
-    instance_destroy();
-}
-else{
-if(collision==3)
-    show_debug_message("fizzle");
-}
 </string>
           </argument>
         </arguments>
@@ -153,7 +75,7 @@ if(collision==3)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*wall = 32;
+            <string>wall = 32;
 
 //object_set_visible(obj_moving_portal, false);
 
@@ -207,15 +129,23 @@ if (sign(vel_y) == -1 &amp;&amp; bottom){
 x = x - wall;
 y = y - wall;
 
-
-//    var portal = instance_create(x+x_change,y+y_change,obj_portal_left);
-//    portal.image_angle = angle;
-
-with(obj_moving_portal){
-    instance_destroy();
+if (sprite_index == spr_moving_right_portal){
+    with(obj_portal_right) {
+        instance_destroy();
+    }
+    var portal = instance_create(x+x_change,y+y_change,obj_portal_right);
+    portal.image_angle = angle;
+} else {
+    with(obj_portal_left) {
+        instance_destroy()
+    }
+    var portal = instance_create(x+x_change,y+y_change,obj_portal_left);
+    portal.image_angle = angle;
 }
 
-*/
+instance_destroy();
+
+
 </string>
           </argument>
         </arguments>

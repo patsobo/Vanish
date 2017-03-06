@@ -28,11 +28,7 @@
             <string>x_vel = 0;
 y_vel = 0;
 move_speed = .3;
-listing_speed = move_speed/5;
-rotation_speed = 25;
 dampening = .95;
-heading = random(360);
-randomize();
 </string>
           </argument>
         </arguments>
@@ -61,7 +57,6 @@ if distance_to_object(obj_player) &lt; 150 {
     var dely = y-obj_player.y;
     x_vel+= delx/(abs(delx)+abs(dely)) * move_speed;
     y_vel-= dely/(abs(delx)+abs(dely)) * move_speed;
-    heading = radtodeg(point_direction(x,y,obj_player.x,obj_player.y));
     sprite_index = spr_skull_aggro;
     //speed = 2;
     if (obj_player.x &lt; x){
@@ -78,10 +73,6 @@ else {
     sprite_index = spr_skull;
     image_speed = .2;
     speed = 0;
-    //random movement
-    heading+=random_range(-rotation_speed, rotation_speed);
-    x_vel+=listing_speed*dcos(heading);
-    y_vel+=listing_speed*dsin(heading);
 }
 
 if(abs(x_vel) &lt; .01)
@@ -159,7 +150,7 @@ y+=y_vel;
           <argument>
             <kind>1</kind>
             <string>with(obj_axe){
-    if (abs(vel_x) &gt;= 0.1 &amp;&amp; abs(vel_y) &gt;= 0.1){
+    if (vel_x != 0 &amp;&amp; vel_y != 0){
         other.sprite_index = spr_skull_death
         other.image_speed = .35
     }

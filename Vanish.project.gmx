@@ -109,8 +109,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
     <room>rooms\boss_room</room>
+    <room>rooms\room0</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
   </rooms>

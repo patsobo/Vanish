@@ -3,12 +3,12 @@
   <spriteName>spr_flat_left_portal</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>spr_hitbox_flat_portal</maskName>
+  <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="4" ename="obj_player">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,9 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(place_meeting(x,y,obj_portal_right))
-{
-    instance_destroy();
+            <string>if (instance_number(obj_portal_right) &gt; 0){
+    var new_x;
+    var new_y;
+    
+    with(obj_portal_right){
+        other.new_x = x;
+        other.new_y = y;
+    }
+    
+    with(obj_player){
+        x = other.new_x;
+        y = other.new_y;
+    }
 }
 </string>
           </argument>
