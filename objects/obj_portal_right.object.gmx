@@ -51,7 +51,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>/*
 if (instance_number(obj_portal_left) &gt; 0){
     var new_x;
     var new_y;
@@ -66,6 +66,7 @@ if (instance_number(obj_portal_left) &gt; 0){
         y = other.new_y;
     }
 }
+*/
 </string>
           </argument>
         </arguments>

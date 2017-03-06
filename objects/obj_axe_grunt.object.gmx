@@ -81,7 +81,7 @@ if (instance_exists(box)){
     box.x = x;
 }
 
-if (!place_meeting(x,y + 26,obj_wall)){
+if (!place_meeting(x - 16,y + 26,obj_wall) || !place_meeting(x + 16,y + 26,obj_wall)){
     vel_x *= -1;
     image_xscale *= -1;
 }
