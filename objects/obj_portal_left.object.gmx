@@ -28,6 +28,8 @@
             <string>portal_direction = 0;
 cooldown = 0;
 COOLDOWN_TIMER = 5;
+image_speed = .2
+image_xscale = 1.5
 
 if(place_meeting(x,y,obj_portal_right))
 {
