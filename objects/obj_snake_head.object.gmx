@@ -27,14 +27,16 @@
             <kind>1</kind>
             <string>amplitude = 40;
 freq = 2;
-length = 15;
+length = 20;
 body[0] = 0;
-dir = 1;
-counter = 0;
+dir = -1;
+base_y = y;
+move_speed = 3;
+bounce_speed = 5;
 
 var i;
 for (i = 0; i &lt; length; i++){
-    body[i] = instance_create(x+dir*4*i, y-abs(amplitude * sin(degtorad(2 * pi * freq * i))), obj_snake_body);
+    body[i] = instance_create(x-dir*move_speed*i, base_y-abs(amplitude * sin(degtorad(2 * pi * freq * i))), obj_snake_body);
 }
 
 </string>
@@ -87,7 +89,8 @@ for (i = 0; i &lt; length; i++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var kill = false;
+            <string>// Check if the snake needs to die
+var kill = false;
 
 var i;
 for (i = 0; i &lt; length; i++){
@@ -99,9 +102,29 @@ for (i = 0; i &lt; length; i++){
 if (kill)
     instance_destroy();
     
-x = x+4
-y = y-abs(amplitude * sin(degtorad(2 * pi * freq * counter)));
-counter++;
+// Move the snake
+x = x+dir*move_speed
+y = base_y - abs(amplitude * sin(degtorad(2 * pi * freq * x / bounce_speed)));
+
+var i;
+for (i = 0; i &lt; length; i++){
+    with(body[i]){
+        x = x + other.move_speed * other.dir;
+        y = other.base_y - abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / other.bounce_speed)));
+    }
+}
+
+if( place_meeting(x-1,y,obj_wall)){
+    dir *= -1;
+    x = body[length-1].x + dir*move_speed;
+    y = abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / bounce_speed)));
+}
+
+if( place_meeting(x+1,y,obj_wall)){
+    dir *= -1;
+    x = body[0].x + dir*move_speed;
+    y = abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / bounce_speed)));
+}
 </string>
           </argument>
         </arguments>
