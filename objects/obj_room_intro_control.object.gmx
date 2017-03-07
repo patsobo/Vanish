@@ -28,6 +28,11 @@
             <string>global.current_room = room_intro;
 global.next_room = room0;
 
+//with(obj_wall){
+//    sprite_index = spr_grass;
+//}
+skin_outside();
+
 var barriers1;
 var xs1;
 var ys1;

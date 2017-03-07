@@ -34,7 +34,7 @@ randomize();
 rain_counter = random(750);
 //if (floor(random_range(0,10)) % 2 == 0) {
 
-if (there_is_a_window()){
+if (instance_number(obj_window) &gt; 0){
     with(obj_window){
         sprite_index = spr_window_rain;
         image_speed = .3;
@@ -65,7 +65,7 @@ if (there_is_a_window()){
           <argument>
             <kind>1</kind>
             <string>if (!paused){
-    if (there_is_a_window()){
+    if (instance_number(obj_window)){
         //lightning
         rain_counter -= 1;
         

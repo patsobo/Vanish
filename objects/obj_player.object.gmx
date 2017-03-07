@@ -308,16 +308,7 @@ if(keyboard_check(global.right_portal))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (there_is_a_window()){
-
-    if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
-        shader_set(shader_silhouette);
-    }
-    draw_self();
-    shader_reset();
-} else {
-    draw_self();
-}
+            <string>do_lightning();
 </string>
           </argument>
         </arguments>

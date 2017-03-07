@@ -52,6 +52,7 @@
       <sprite>sprites\spr_crusher_passive</sprite>
       <sprite>sprites\spr_crusher_active</sprite>
       <sprite>sprites\spr_end_door</sprite>
+      <sprite>sprites\spr_grass</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -66,6 +67,12 @@
       <sprite>sprites\spr_crystal_dead</sprite>
       <sprite>sprites\spr_boss</sprite>
       <sprite>sprites\spr_angry_boss</sprite>
+    </sprites>
+    <sprites name="Tutorial">
+      <sprite>sprites\spr_move</sprite>
+      <sprite>sprites\spr_jump</sprite>
+      <sprite>sprites\spr_attack</sprite>
+      <sprite>sprites\spr_portals</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -84,9 +91,9 @@
     <script>scripts\fuck_em_up.gml</script>
     <script>scripts\kill_player.gml</script>
     <script>scripts\check_collision.gml</script>
-    <script>scripts\there_is_a_window.gml</script>
     <script>scripts\do_lightning.gml</script>
     <script>scripts\next_level.gml</script>
+    <script>scripts\skin_outside.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -136,14 +143,22 @@
       <object>objects\obj_crystal</object>
       <object>objects\obj_boss</object>
     </objects>
+    <objects name="Tutorial">
+      <object>objects\obj_tut_move</object>
+      <object>objects\obj_tut_jump</object>
+      <object>objects\obj_tut_attack</object>
+      <object>objects\obj_tut_portals</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
-    <room>rooms\menu</room>
-    <room>rooms\gameOver</room>
-    <room>rooms\nextRoom</room>
+    <rooms name="Menus">
+      <room>rooms\gameOver</room>
+      <room>rooms\menu</room>
+      <room>rooms\nextRoom</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
