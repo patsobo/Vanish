@@ -202,7 +202,7 @@
     <instance objName="obj_weapon_rack" x="216" y="144" name="inst_A594DADB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_weapon_rack" x="304" y="208" name="inst_0B979117" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_axe_grunt" x="312" y="464" name="inst_6B0C4B72" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_axe_grunt" x="152" y="304" name="inst_8AC78EBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_axe_grunt" x="152" y="312" name="inst_8AC78EBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_room0_control" x="56" y="32" name="inst_95A2B8C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_game_button" x="244" y="196" name="inst_7623B0A7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
     <instance objName="obj_crusher" x="512" y="128" name="inst_8799320F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

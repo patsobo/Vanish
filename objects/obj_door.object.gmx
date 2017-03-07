@@ -51,9 +51,9 @@ alarm[0] = room_speed * random(10) + 100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var new_mob = instance_create(x,y + 48, mob_to_spawn);
+            <string>var new_mob = instance_create(x,y + 56, mob_to_spawn);
 with(new_mob){
-    if (place_meeting(x,y+48,obj_axe_grunt) || place_meeting(x,y+48,obj_skull)){
+    if (place_meeting(x,y+56,obj_axe_grunt) || place_meeting(x,y+48,obj_skull)){
         instance_destroy();
     } 
 }
