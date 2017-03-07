@@ -79,7 +79,7 @@ if (x &lt; 0 || x &gt; room_width || y &lt; 0 || y &gt; room_height){
             <kind>1</kind>
             <string>///Uncomment when portals are working
 
-//kill_player();
+kill_player();
 </string>
           </argument>
         </arguments>

@@ -29,6 +29,10 @@
       <sprite>sprites\spr_skull_aggro</sprite>
       <sprite>sprites\spr_skull_death</sprite>
       <sprite>sprites\spr_axe_grunt</sprite>
+      <sprites name="snake">
+        <sprite>sprites\spr_snake_head</sprite>
+        <sprite>sprites\spr_snake_body</sprite>
+      </sprites>
     </sprites>
     <sprites name="Environment">
       <sprite>sprites\spr_window</sprite>
@@ -44,6 +48,9 @@
       <sprite>sprites\spr_barrier</sprite>
       <sprite>sprites\spr_button</sprite>
       <sprite>sprites\spr_button_pressed</sprite>
+      <sprite>sprites\spr_door_open</sprite>
+      <sprite>sprites\spr_crusher_passive</sprite>
+      <sprite>sprites\spr_crusher_active</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -74,6 +81,8 @@
     <script>scripts\fuck_em_up.gml</script>
     <script>scripts\kill_player.gml</script>
     <script>scripts\check_collision.gml</script>
+    <script>scripts\there_is_a_window.gml</script>
+    <script>scripts\do_lightning.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -91,6 +100,8 @@
       <object>objects\obj_skull</object>
       <object>objects\obj_bat</object>
       <object>objects\obj_axe_grunt</object>
+      <object>objects\obj_snake_body</object>
+      <object>objects\obj_snake_head</object>
     </objects>
     <objects name="Environment">
       <object>objects\obj_box</object>
@@ -101,6 +112,7 @@
       <object>objects\obj_door</object>
       <object>objects\obj_barrier</object>
       <object>objects\obj_game_button</object>
+      <object>objects\obj_crusher</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -111,6 +123,7 @@
       <object>objects\obj_pause</object>
       <object>objects\obj_boss_control</object>
       <object>objects\obj_room0_control</object>
+      <object>objects\obj_room_intro_control</object>
     </objects>
     <objects name="Boss">
       <object>objects\obj_fire_wall</object>
@@ -119,8 +132,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\boss_room</room>
+    <room>rooms\room_intro</room>
     <room>rooms\room0</room>
+    <room>rooms\boss_room</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
   </rooms>

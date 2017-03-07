@@ -29,9 +29,8 @@
 var thres = 16;
 var stuck = false;
 with(obj_player){
-    if (abs(other.x + thres - x) &lt; thres + 10 || abs(other.y + thres - y) &lt; thres + 7){
+    if (abs(other.x + thres - x) &lt; thres + 8 || abs(other.y + thres - y) &lt; thres + 5){
             stuck = true;
-            instance_create(32,32,obj_window);
             x = other.x - 10;
             y = other.y - 7;
     }
@@ -58,11 +57,16 @@ with(obj_player){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
-    shader_set(shader_white);
+            <string>if (there_is_a_window()){
+
+    if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index &gt;= obj_window.image_number - 3) {
+        shader_set(shader_white);
+    }
+    draw_self();
+    shader_reset();
+} else {
+    draw_self();
 }
-draw_self();
-shader_reset();
 </string>
           </argument>
         </arguments>

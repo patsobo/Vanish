@@ -34,9 +34,11 @@ randomize();
 rain_counter = random(750);
 //if (floor(random_range(0,10)) % 2 == 0) {
 
-with(obj_window){
-    sprite_index = spr_window_rain;
-    image_speed = .3;
+if (there_is_a_window()){
+    with(obj_window){
+        sprite_index = spr_window_rain;
+        image_speed = .3;
+    }
 }
 
 
@@ -63,18 +65,20 @@ with(obj_window){
           <argument>
             <kind>1</kind>
             <string>if (!paused){
-    //lightning
-    rain_counter -= 1;
-    
-    //show_debug_message(rain_counter);
-    if (rain_counter &lt; 0){
-        rain_counter = random(750);
-        if (obj_window.sprite_index == spr_window_rain ) {
-            obj_window.sprite_index = spr_window_lightning;
+    if (there_is_a_window()){
+        //lightning
+        rain_counter -= 1;
+        
+        //show_debug_message(rain_counter);
+        if (rain_counter &lt; 0){
+            rain_counter = random(750);
+            if (obj_window.sprite_index == spr_window_rain ) {
+                obj_window.sprite_index = spr_window_lightning;
+            }
         }
-    }
-    if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index == image_number){
-        obj_window.sprite_index = spr_window_rain;
+        if (obj_window.sprite_index == spr_window_lightning &amp;&amp; obj_window.image_index == image_number){
+            obj_window.sprite_index = spr_window_rain;
+        }
     }
 }
 

@@ -165,7 +165,7 @@ state = 1;
         var i;
         for (i = 0; i &lt; array_length_1d(control_objs); i++){
             //control_objs[i].visible = true;
-            with(control_objs[i])
+            with(objs_to_destroy[i])
                 instance_destroy();
         }
     } 
