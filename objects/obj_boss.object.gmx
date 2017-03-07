@@ -124,6 +124,7 @@ alarm[0] = room_speed * random(10) + 300;
             <kind>1</kind>
             <string>if (sprite_index == spr_angry_boss){
     instance_destroy();
+    instance_create(512, 688, obj_end_door);
 }
 </string>
           </argument>

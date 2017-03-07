@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var barriers1;
+            <string>global.current_room = room_intro;
+global.next_room = room0;
+
+var barriers1;
 var xs1;
 var ys1;
 

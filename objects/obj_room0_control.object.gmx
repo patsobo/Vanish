@@ -27,6 +27,13 @@
             <kind>1</kind>
             <string>/// Make buttons!
 
+global.current_room = room0;
+global.next_room = boss_room;
+
+with(obj_end_door){
+    next_room = boss_room
+}
+
 var barriers1;
 var xs1;
 var ys1;

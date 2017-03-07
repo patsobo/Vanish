@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>//alarm[0] = 30;
+global.current_room = boss_room;
+global.next_room = menu;
+
 </string>
           </argument>
         </arguments>

@@ -51,12 +51,14 @@
       <sprite>sprites\spr_door_open</sprite>
       <sprite>sprites\spr_crusher_passive</sprite>
       <sprite>sprites\spr_crusher_active</sprite>
+      <sprite>sprites\spr_end_door</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
       <sprite>sprites\spr_play_button</sprite>
       <sprite>sprites\spr_back_button</sprite>
       <sprite>sprites\spr_boss_button</sprite>
+      <sprite>sprites\spr_continue_button</sprite>
     </sprites>
     <sprites name="Boss">
       <sprite>sprites\spr_fire_wall</sprite>
@@ -71,6 +73,7 @@
     <background>background\title</background>
     <background>background\bg_stone</background>
     <background>background\bg_stone_light</background>
+    <background>background\level_complete</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path_bat</path>
@@ -83,6 +86,7 @@
     <script>scripts\check_collision.gml</script>
     <script>scripts\there_is_a_window.gml</script>
     <script>scripts\do_lightning.gml</script>
+    <script>scripts\next_level.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -113,6 +117,7 @@
       <object>objects\obj_barrier</object>
       <object>objects\obj_game_button</object>
       <object>objects\obj_crusher</object>
+      <object>objects\obj_end_door</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -124,6 +129,7 @@
       <object>objects\obj_boss_control</object>
       <object>objects\obj_room0_control</object>
       <object>objects\obj_room_intro_control</object>
+      <object>objects\obj_continue</object>
     </objects>
     <objects name="Boss">
       <object>objects\obj_fire_wall</object>
@@ -137,6 +143,7 @@
     <room>rooms\boss_room</room>
     <room>rooms\menu</room>
     <room>rooms\gameOver</room>
+    <room>rooms\nextRoom</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
