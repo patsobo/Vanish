@@ -79,7 +79,7 @@ var dead = 0;
     
 with(obj_crystal){
     count++;
-    if (sprite_index == spr_crystal_dead){
+    if (sprite_index == spr_crystal_dead_one || sprite_index == spr_crystal_dead_two ||sprite_index == spr_crystal_dead_three ){
         dead++;
     }
 }

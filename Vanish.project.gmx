@@ -53,6 +53,7 @@
       <sprite>sprites\spr_crusher_active</sprite>
       <sprite>sprites\spr_end_door</sprite>
       <sprite>sprites\spr_grass</sprite>
+      <sprite>sprites\spr_dirt</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -64,7 +65,9 @@
     <sprites name="Boss">
       <sprite>sprites\spr_fire_wall</sprite>
       <sprite>sprites\spr_crystal</sprite>
-      <sprite>sprites\spr_crystal_dead</sprite>
+      <sprite>sprites\spr_crystal_dead_one</sprite>
+      <sprite>sprites\spr_crystal_dead_two</sprite>
+      <sprite>sprites\spr_crystal_dead_three</sprite>
       <sprite>sprites\spr_boss</sprite>
       <sprite>sprites\spr_angry_boss</sprite>
     </sprites>
