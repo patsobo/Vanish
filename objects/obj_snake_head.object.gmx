@@ -25,18 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>amplitude = 40;
-freq = 2;
-length = 20;
+            <string>length = 15;
 body[0] = 0;
 dir = -1;
-base_y = y;
-move_speed = 3;
-bounce_speed = 5;
+depth = -5;
+vel_y = 0;
+vel_x = 3;
+gravity_y = .5;
+impulse = 7;
 
 var i;
 for (i = 0; i &lt; length; i++){
-    body[i] = instance_create(x-dir*move_speed*i, base_y-abs(amplitude * sin(degtorad(2 * pi * freq * i))), obj_snake_body);
+    body[i] = instance_create(x, y, obj_snake_body);
 }
 
 </string>
@@ -89,7 +89,49 @@ for (i = 0; i &lt; length; i++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Check if the snake needs to die
+            <string>      
+// Move the body
+var i;
+for (i = length - 1; i &gt; 0; i--){
+    body[i].x = body[i-1].x;
+    body[i].y = body[i-1].y;
+}
+body[0].x = x;
+body[0].y = y;
+
+
+    
+// Move the head
+x = x+dir*vel_x;
+vel_y = vel_y + gravity_y;
+y = y + vel_y;
+
+/*if (check_collision(x,y-1, object_index)){
+    // Bounce off a ceiling tile, wow...
+    if (vel_y &lt; 0){
+        while (check_collision(x,y,object_index)){
+            y++;
+        }
+    }
+    vel_y = -vel_y;
+}*/
+
+if (check_collision(x,y+1,object_index)){
+    if (vel_y &gt; 0){
+        while (check_collision(x,y,object_index)){
+            y--;
+        }
+    }
+    vel_y = -impulse;
+}
+
+
+// Bounce off a wall
+if( check_collision(x-vel_x*dir,y,object_index) || check_collision(x+vel_x*dir,y,object_index)){
+    dir *= -1;
+}
+
+// Check if the snake needs to die
 var kill = false;
 
 var i;
@@ -102,30 +144,30 @@ for (i = 0; i &lt; length; i++){
 if (kill)
     instance_destroy();
     
-// Move the snake
-x = x+dir*move_speed
-y = base_y - abs(amplitude * sin(degtorad(2 * pi * freq * x / bounce_speed)));
-
-var i;
-for (i = 0; i &lt; length; i++){
-    with(body[i]){
-        x = x + other.move_speed * other.dir;
-        y = other.base_y - abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / other.bounce_speed)));
-    }
-}
-
-if( place_meeting(x-1,y,obj_wall)){
-    dir *= -1;
-    x = body[length-1].x + dir*move_speed;
-    y = abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / bounce_speed)));
-}
-
-if( place_meeting(x+1,y,obj_wall)){
-    dir *= -1;
-    x = body[0].x + dir*move_speed;
-    y = abs(other.amplitude * sin(degtorad(2 * pi * other.freq * x / bounce_speed)));
-}
+  
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_player">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

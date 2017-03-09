@@ -10,7 +10,8 @@ if (current_obj == obj_player){
 } else if (current_obj == obj_axe){
     collision_checks[0] = obj_wall;
     collision_checks[1] = obj_crusher;
-    
+
+// Could delete because default option
 } else if (current_obj == obj_moving_portal){
     collision_checks[0] = obj_wall;
     
@@ -21,6 +22,10 @@ if (current_obj == obj_player){
 } else if (current_obj == obj_skull){
     collision_checks[0] = obj_wall;
     collision_checks[1] = obj_skull;
+
+// Could delte because default option
+} else if (current_obj == obj_snake_head){
+    collision_checks[0] = obj_wall;
     
 } else {
     show_debug_message("Object uses default collisions: " + current_obj); 
