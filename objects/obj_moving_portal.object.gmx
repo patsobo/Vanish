@@ -64,19 +64,19 @@ if (x &gt; room_width || x &lt; 0 || y &lt; 0 || y &gt; room_height){
 var xn=x;
 var yn =y;
 var collision = 0;
-if(collision_point(x+vel_x,y,obj_wall,false,true))
+if(check_collision(x+vel_x,y, object_index))
 {
     collision+=1;
-    while(!collision_point(xn+sign(vel_x),y,obj_wall,false,true))
+    while(!check_collision(xn+sign(vel_x),y,object_index))
     {
         xn += sign(vel_x);
     }
 }
 
-if(collision_point(x,y+vel_y,obj_wall,false,true))
+if(check_collision(x,y+vel_y,object_index))
 {
     collision+=2;
-    while(!collision_point(x,yn+sign(vel_y),obj_wall,false,true))
+    while(!check_collision(x,yn+sign(vel_y),object_index))
     {
         yn += sign(vel_y);
     }

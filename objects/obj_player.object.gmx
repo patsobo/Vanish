@@ -89,16 +89,16 @@ if(abs(vel_x) &lt; 1)
     vel_x=0;
 vel_x*=dampening;
 //if on ground apply friction
-if (check_collision(x, y+1))
+if (check_collision(x, y+1, object_index))
     vel_x*=frict;
 vel_y*=dampening;
 
 
 
 //Update position
-if (check_collision(x + vel_x, y))
+if (check_collision(x + vel_x, y, object_index))
 {
-    while(!check_collision(x+sign(vel_x),y))
+    while(!check_collision(x+sign(vel_x),y, object_index))
     {
         x += sign(vel_x);
     }
@@ -107,9 +107,9 @@ if (check_collision(x + vel_x, y))
 x+=vel_x;
 
 
-if(check_collision(x,y+vel_y))
+if(check_collision(x,y+vel_y, object_index))
 {
-    while(!check_collision(x,y+sign(vel_y)))
+    while(!check_collision(x,y+sign(vel_y), object_index))
     {
         y += sign(vel_y);
     }
@@ -156,12 +156,12 @@ if( keyboard_check(global.left))
         image_speed = .2;
     }
     //if( place_meeting(x,y+1,obj_wall))// On ground?
-    if (check_collision(x, y+1))
+    if (check_collision(x, y+1, object_index))
         vel_x-=move_speed;
     vel_x-=air_move_speed ;
 }
 
-if(keyboard_check_pressed(global.jump) &amp;&amp; check_collision(x, y+1))
+if(keyboard_check_pressed(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
 {
     jumping = true;
     steps = 0;
@@ -171,7 +171,7 @@ if(jumping) {
     if(steps % 2 == 1)
         vel_y-=(jump_speed/steps);
 }
-if(steps&gt; jump_time || keyboard_check_released(global.jump) || check_collision(x, y-1)){
+if(steps&gt; jump_time || keyboard_check_released(global.jump) || check_collision(x, y-1, object_index)){
     jumping = false
 }
 if( keyboard_check(global.right))
@@ -181,7 +181,7 @@ if( keyboard_check(global.right))
         image_xscale = 1;
         image_speed = .2;
     }
-    if(check_collision(x, y+1))// On ground?
+    if(check_collision(x, y+1, object_index))// On ground?
         vel_x+=move_speed;
     vel_x+=air_move_speed ;
 }

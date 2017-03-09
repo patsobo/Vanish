@@ -29,6 +29,7 @@
 passive_timer = room_speed * 5;
 active = false;
 alarm[0] = passive_timer;
+depth = 10;
 </string>
           </argument>
         </arguments>

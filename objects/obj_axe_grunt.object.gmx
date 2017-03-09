@@ -28,6 +28,8 @@
             <string>box = instance_create(x, y - 16, obj_weapon_rack);
 image_speed = .2
 vel_x = 3;
+vel_y = 0;
+gravity_y = 1;
 </string>
           </argument>
         </arguments>
@@ -79,12 +81,34 @@ vel_x = 3;
             <string>x = x + vel_x;
 if (instance_exists(box)){
     box.x = x;
+    box.y = y - 16;
 }
 
-if (!place_meeting(x - 16,y + 26,obj_wall) || !place_meeting(x + 16,y + 26,obj_wall)){
+// Let the dude walk on platforms
+if (!check_collision(x - 16,y + 26,object_index) || !check_collision(x + 16,y + 26,object_index)){
     vel_x *= -1;
     image_xscale *= -1;
 }
+
+// Change direction 
+if (check_collision(x + 1,y-10, object_index) || check_collision(x - 1, y-10, object_index)){
+    vel_x *= -1;
+    image_xscale *= -1;
+}
+
+// Do Gravity
+if (!check_collision(x,y+1, object_index)){
+    vel_y += gravity_y;
+    y = y + vel_y;
+} else {
+    if (vel_y &gt; 0){
+        while (check_collision(x,y,object_index)){
+            y--;
+        }
+    }
+    vel_y = 0;
+}
+
 </string>
           </argument>
         </arguments>
@@ -107,13 +131,7 @@ if (!place_meeting(x - 16,y + 26,obj_wall) || !place_meeting(x + 16,y + 26,obj_w
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if (place_meeting(x + 1,y-10, obj_wall) || place_meeting(x - 1, y-10, obj_wall)){
-    vel_x *= -1;
-    image_xscale *= -1;
-}
-
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>

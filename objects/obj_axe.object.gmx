@@ -66,7 +66,7 @@ if(abs(vel_x) &lt; 1)
     vel_x=0;
 vel_x*=dampening;
 //if on ground apply friction
-if( place_meeting(x,y+1,obj_wall))
+if (check_collision(x, y+1, object_index))
     vel_x*=frict;
 vel_y*=dampening;
 
@@ -74,15 +74,15 @@ vel_y*=dampening;
 
 //Update rotation
 
-if(!place_meeting(x,y+1,obj_wall)) 
+if(!check_collision(x,y+1,object_index)) 
     image_angle+=-1*sign(vel_x)*spin_speed;
 
 
 
 //Update position
-if(place_meeting(x+vel_x,y,obj_wall))
+if(check_collision(x+vel_x,y,object_index))
 {
-    while(!place_meeting(x+sign(vel_x),y,obj_wall))
+    while(!check_collision(x+sign(vel_x),y,object_index))
     {
         x += sign(vel_x);
     }
@@ -91,9 +91,9 @@ if(place_meeting(x+vel_x,y,obj_wall))
 x+=vel_x;
 
 
-if(place_meeting(x,y+vel_y,obj_wall))
+if(check_collision(x,y+vel_y,object_index))
 {
-    while(!place_meeting(x,y+sign(vel_y),obj_wall))
+    while(!check_collision(x,y+sign(vel_y),object_index))
     {
         y += sign(vel_y);
     }

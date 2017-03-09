@@ -97,6 +97,7 @@
     <script>scripts\do_lightning.gml</script>
     <script>scripts\next_level.gml</script>
     <script>scripts\skin_outside.gml</script>
+    <script>scripts\get_collision_blocks.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
