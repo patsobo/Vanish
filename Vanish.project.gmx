@@ -128,6 +128,7 @@
       <object>objects\obj_game_button</object>
       <object>objects\obj_crusher</object>
       <object>objects\obj_end_door</object>
+      <object>objects\obj_background</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
