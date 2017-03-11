@@ -25,13 +25,17 @@
     <sprites name="Enemy">
       <sprite>sprites\spr_bat_awake</sprite>
       <sprite>sprites\spr_bat</sprite>
-      <sprite>sprites\spr_skull</sprite>
-      <sprite>sprites\spr_skull_aggro</sprite>
-      <sprite>sprites\spr_skull_death</sprite>
       <sprite>sprites\spr_axe_grunt</sprite>
       <sprites name="snake">
         <sprite>sprites\spr_snake_head</sprite>
         <sprite>sprites\spr_snake_body</sprite>
+      </sprites>
+      <sprite>sprites\spr_archer</sprite>
+      <sprite>sprites\spr_arrow</sprite>
+      <sprites name="skull">
+        <sprite>sprites\spr_skull_death</sprite>
+        <sprite>sprites\spr_skull</sprite>
+        <sprite>sprites\spr_skull_aggro</sprite>
       </sprites>
     </sprites>
     <sprites name="Environment">
@@ -54,6 +58,7 @@
       <sprite>sprites\spr_end_door</sprite>
       <sprite>sprites\spr_grass</sprite>
       <sprite>sprites\spr_dirt</sprite>
+      <sprite>sprites\spr_portal_clear</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -98,6 +103,7 @@
     <script>scripts\next_level.gml</script>
     <script>scripts\skin_outside.gml</script>
     <script>scripts\get_collision_blocks.gml</script>
+    <script>scripts\screw_this_archer.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -117,6 +123,9 @@
       <object>objects\obj_axe_grunt</object>
       <object>objects\obj_snake_body</object>
       <object>objects\obj_snake_head</object>
+      <object>objects\obj_archer</object>
+      <object>objects\obj_arrow</object>
+      <object>objects\obj_fake_arrow</object>
     </objects>
     <objects name="Environment">
       <object>objects\obj_box</object>
@@ -126,6 +135,7 @@
       <object>objects\obj_wall</object>
       <object>objects\obj_door</object>
       <object>objects\obj_barrier</object>
+      <object>objects\obj_portal_clear</object>
       <object>objects\obj_game_button</object>
       <object>objects\obj_crusher</object>
       <object>objects\obj_end_door</object>
