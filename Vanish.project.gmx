@@ -38,6 +38,7 @@
         <sprite>sprites\spr_skull</sprite>
         <sprite>sprites\spr_skull_aggro</sprite>
       </sprites>
+      <sprite>sprites\spr_spider</sprite>
     </sprites>
     <sprites name="Environment">
       <sprite>sprites\spr_window</sprite>
@@ -130,6 +131,7 @@
       <object>objects\obj_archer</object>
       <object>objects\obj_arrow</object>
       <object>objects\obj_fake_arrow</object>
+      <object>objects\obj_spider</object>
     </objects>
     <objects name="Environment">
       <object>objects\obj_box</object>
@@ -173,14 +175,15 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room_intro</room>
     <room>rooms\room0</room>
+    <room>rooms\room_intro</room>
     <room>rooms\boss_room</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>
       <room>rooms\nextRoom</room>
     </rooms>
+    <room>rooms\entry_level</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
