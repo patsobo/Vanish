@@ -25,12 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>smart = false;
-patrol = false;
+            <string>smart = true;       // if true, this dude snipes you!
+patrol = false;     // Moves around
 vel_x = -3;
 vel_y = 0;
 gravity_y = 1;
-fire_rate = room_speed;
+fire_rate = room_speed; // Machine gun??? (lower = faster)
 show_arrow_checks = false;  //Debug boolean. You can also turn it on for fun
 
 //Arrow stuff
@@ -143,6 +143,11 @@ alarm[0] = fire_rate;
         image_xscale *= -1;
     }
 
+    if (x &gt; room_width || x &lt; 0){
+        vel_x *= -1;
+        image_xscale *= -1;
+    }
+    
     x += vel_x;
 }
 

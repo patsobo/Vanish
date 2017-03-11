@@ -21,6 +21,7 @@
         <sprite>sprites\spr_player_hitbox</sprite>
         <sprite>sprites\spr_hitbox_flat_portal</sprite>
       </sprites>
+      <sprite>sprites\spr_jumping</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprite>sprites\spr_bat_awake</sprite>
@@ -58,6 +59,9 @@
       <sprite>sprites\spr_end_door</sprite>
       <sprite>sprites\spr_grass</sprite>
       <sprite>sprites\spr_dirt</sprite>
+      <sprite>sprites\spr_painting_farmer</sprite>
+      <sprite>sprites\spr_grass_one</sprite>
+      <sprite>sprites\spr_grass_two</sprite>
       <sprite>sprites\spr_portal_clear</sprite>
     </sprites>
     <sprites name="Control">
@@ -140,6 +144,9 @@
       <object>objects\obj_crusher</object>
       <object>objects\obj_end_door</object>
       <object>objects\obj_background</object>
+      <object>objects\obj_painting</object>
+      <object>objects\obj_grass_one</object>
+      <object>objects\obj_grass_two</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
