@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="Player">
+      <sprite>sprites\spr_jumping</sprite>
       <sprite>sprites\spr_walking</sprite>
       <sprite>sprites\spr_standing</sprite>
       <sprite>sprites\spr_hitbox_player</sprite>
@@ -21,7 +22,6 @@
         <sprite>sprites\spr_player_hitbox</sprite>
         <sprite>sprites\spr_hitbox_flat_portal</sprite>
       </sprites>
-      <sprite>sprites\spr_jumping</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprite>sprites\spr_bat_awake</sprite>

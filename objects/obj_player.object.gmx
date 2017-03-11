@@ -40,6 +40,7 @@ throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
+in_air = false;
 
 jump_speed = 12;
 jump_time = 12;
@@ -147,13 +148,20 @@ if (y &lt; 1)
     y = 1;
 if (y &gt; room_height-1)
     kill_player();
+    
+in_air = !check_collision(x, y+1, object_index)
 
 if( keyboard_check(global.left))
 {
     with(obj_player){
-        sprite_index = spr_walking;
-        image_xscale = -1;
-        image_speed = .2;
+        if (in_air){
+            sprite_index = spr_jumping;
+            image_xscale = -1;
+        } else {
+            sprite_index = spr_walking;
+            image_xscale = -1;
+            image_speed = .2;
+        } 
     }
     //if( place_meeting(x,y+1,obj_wall))// On ground?
     if (check_collision(x, y+1, object_index))
@@ -163,6 +171,7 @@ if( keyboard_check(global.left))
 
 if(keyboard_check_pressed(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
 {
+    sprite_index = spr_jumping;
     jumping = true;
     steps = 0;
 }
@@ -172,14 +181,19 @@ if(jumping) {
         vel_y-=(jump_speed/steps);
 }
 if(steps&gt; jump_time || keyboard_check_released(global.jump) || check_collision(x, y-1, object_index)){
-    jumping = false
+    jumping = false;
 }
 if( keyboard_check(global.right))
 {
     with(obj_player){
-        sprite_index = spr_walking;
-        image_xscale = 1;
-        image_speed = .2;
+        if (in_air){
+            sprite_index = spr_jumping;
+            image_xscale = 1;
+        } else {
+            sprite_index = spr_walking;
+            image_xscale = 1;
+            image_speed = .2;
+        }   
     }
     if(check_collision(x, y+1, object_index))// On ground?
         vel_x+=move_speed;
@@ -188,8 +202,12 @@ if( keyboard_check(global.right))
 
 if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
     with(obj_player){
-        sprite_index = spr_standing;
-        image_speed = .2;
+        if (in_air){
+            sprite_index = spr_jumping;
+        } else {
+            sprite_index = spr_standing;
+            image_speed = .2;
+        }     
     }
 }
 

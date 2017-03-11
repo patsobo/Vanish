@@ -209,7 +209,7 @@
     <instance objName="obj_crusher" x="512" y="96" name="inst_DF3A3A15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_end_door" x="608" y="432" name="inst_87590DE1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_axe_grunt" x="256" y="248" name="inst_BD588848" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-	<instance objName="obj_painting" x="528" y="440" name="inst_334D82F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_painting" x="528" y="440" name="inst_334D82F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_painting" x="368" y="208" name="inst_AC417D2A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
