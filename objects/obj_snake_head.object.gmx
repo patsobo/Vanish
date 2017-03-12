@@ -144,7 +144,7 @@ for (i = 0; i &lt; length; i++){
 if (kill)
     instance_destroy();
     
-  
+
 </string>
           </argument>
         </arguments>
@@ -167,7 +167,8 @@ if (kill)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>kill_player();
+</string>
           </argument>
         </arguments>
       </action>
@@ -189,8 +190,8 @@ if (kill)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-instance_destroy();
+            <string>if(axe_lethal(other))
+    instance_destroy();
 </string>
           </argument>
         </arguments>

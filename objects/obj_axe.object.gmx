@@ -82,7 +82,7 @@ if(!check_collision(x,y+1,object_index))
 //Update position
 if(check_collision(x+vel_x,y,object_index))
 {
-    while(!check_collision(x+3*sign(vel_x),y,object_index))
+    while(!check_collision(x+sign(vel_x),y,object_index))
     {
         x += sign(vel_x);
     }
@@ -93,7 +93,7 @@ x+=vel_x;
 
 if(check_collision(x,y+vel_y,object_index))
 {
-    while(!check_collision(x,y+3*sign(vel_y),object_index))
+    while(!check_collision(x,y+sign(vel_y),object_index))
     {
         y += sign(vel_y);
     }
@@ -101,7 +101,8 @@ if(check_collision(x,y+vel_y,object_index))
 }
 y+=vel_y;
 
-
+if (x &lt; 0 || x &gt; room_width || y &lt; 0 || y &gt; room_height)
+    instance_destroy();
 </string>
           </argument>
         </arguments>

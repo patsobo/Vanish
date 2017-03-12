@@ -67,7 +67,7 @@
     <instance objName="obj_skull" x="224" y="416" name="inst_86EC2B20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="288" y="224" name="inst_7B8FDD54" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_box" x="128" y="448" name="inst_9A28DC1A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_box" x="608" y="288" name="inst_32913959" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_box" x="456" y="288" name="inst_32913959" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_box" x="160" y="128" name="inst_6269DB3E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bat" x="165" y="32" name="inst_BC256430" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_window" x="96" y="64" name="inst_97922594" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -176,7 +176,6 @@
     <instance objName="obj_wall" x="192" y="160" name="inst_DD6DA78B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="224" y="160" name="inst_591C2EAD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="224" y="256" name="inst_564EB328" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_wall" x="512" y="256" name="inst_1C61AA13" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="480" y="256" name="inst_6AE07AF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="416" y="256" name="inst_8B4B094E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="448" y="256" name="inst_7DC59C2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -213,6 +212,12 @@
     <instance objName="obj_painting" x="368" y="208" name="inst_AC417D2A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_spider" x="440" y="88" name="inst_F4AE6E36" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_spider" x="416" y="248" name="inst_90C1E99B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer" x="560" y="304" name="inst_7924D2A3" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cage" x="512" y="288" name="inst_B7FDD6AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cage" x="544" y="256" name="inst_B204922A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cage" x="576" y="256" name="inst_A3C26E12" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cage" x="512" y="256" name="inst_857A2C9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cage" x="576" y="288" name="inst_76DFBA3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

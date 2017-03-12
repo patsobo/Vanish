@@ -71,7 +71,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dead = true;
+            <string>if (axe_lethal(other))
+    dead = true;
 </string>
           </argument>
         </arguments>

@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>if( image_index == image_number ){ 
      instance_destroy()
-  }
+}
 </string>
           </argument>
         </arguments>
@@ -50,25 +50,27 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index = spr_weapon_rack){
-    count = floor(random(3) + 1);
-    
-    for (i = 0; i &lt; count; i++){
-    var inst = instance_create(x,y,obj_axe);
-        with(inst){
-            MAX_VEL = 10;
-            var del_x = random(MAX_VEL * 2) - MAX_VEL;
-            var del_y = -random(MAX_VEL * 2);
-            //var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-            vel_x= del_x;
-            vel_y= del_y;
-            image_xscale=sign(vel_x);
+            <string>if (axe_lethal(other)){
+    if (sprite_index == spr_weapon_rack){
+        count = floor(random(3) + 1);
+        
+        for (i = 0; i &lt; count; i++){
+        var inst = instance_create(x,y,obj_axe);
+            with(inst){
+                MAX_VEL = 10;
+                var del_x = random(MAX_VEL * 2) - MAX_VEL;
+                var del_y = -random(MAX_VEL * 2);
+                //var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
+                vel_x= del_x;
+                vel_y= del_y;
+                image_xscale=sign(vel_x);
+            }
         }
     }
+    
+    sprite_index = spr_box_explode
+    image_speed = .3
 }
-
-sprite_index = spr_box_explode
-image_speed = .3
 
 </string>
           </argument>

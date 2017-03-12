@@ -124,8 +124,6 @@ if (abs(vel_y) &lt; .1 &amp;&amp; abs(vel_x) &lt; .1){
         instance_destroy();
     }
 }
-
-
 </string>
           </argument>
         </arguments>

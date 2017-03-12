@@ -108,7 +108,6 @@ if (!check_collision(x,y+1, object_index)){
     }
     vel_y = 0;
 }
-
 </string>
           </argument>
         </arguments>
@@ -154,18 +153,9 @@ if (!check_collision(x,y+1, object_index)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>destroy = false;
-
-with(obj_axe){
-    if (abs(vel_x) &gt;= 0.01 &amp;&amp; abs(vel_y) &gt;= 0.01){
-        other.destroy = true;
-    }
-}
-
-if (destroy)
+            <string>if (axe_lethal(other)){
     instance_destroy();
-
-
+}
 </string>
           </argument>
         </arguments>

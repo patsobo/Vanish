@@ -63,7 +63,7 @@ gravity_y = 1;
 // I wish this spider had never been born.
 
 
-show_debug_message("State: " + string(last_state));
+//show_debug_message("State: " + string(last_state));
 
 if (x &gt; room_width || x &lt; 0 || y &lt; 0 || y &gt; room_height){
     instance_destroy();
@@ -230,20 +230,8 @@ if (check_collision(x - x_margin * sign(vel_x),y + margin,object_index)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Kill if axe
-
-destroy = false;
-
-with(obj_axe){
-    if (abs(vel_x) &gt;= 0.01 &amp;&amp; abs(vel_y) &gt;= 0.01){
-        other.destroy = true;
-    }
-}
-
-if (destroy){
+            <string>if (axe_lethal(other))
     instance_destroy();
-}
-
 </string>
           </argument>
         </arguments>

@@ -12,8 +12,6 @@
       <sprite>sprites\spr_standing</sprite>
       <sprite>sprites\spr_hitbox_player</sprite>
       <sprite>sprites\spr_axe</sprite>
-      <sprite>sprites\spr_left_portal</sprite>
-      <sprite>sprites\spr_right_portal</sprite>
       <sprite>sprites\spr_moving_left_portal</sprite>
       <sprite>sprites\spr_moving_right_portal</sprite>
       <sprite>sprites\spr_flat_left_portal</sprite>
@@ -24,29 +22,36 @@
       </sprites>
     </sprites>
     <sprites name="Enemy">
-      <sprite>sprites\spr_bat_awake</sprite>
-      <sprite>sprites\spr_bat</sprite>
-      <sprite>sprites\spr_axe_grunt</sprite>
-      <sprites name="snake">
-        <sprite>sprites\spr_snake_head</sprite>
-        <sprite>sprites\spr_snake_body</sprite>
-      </sprites>
-      <sprite>sprites\spr_archer</sprite>
-      <sprite>sprites\spr_arrow</sprite>
       <sprites name="skull">
         <sprite>sprites\spr_skull_death</sprite>
         <sprite>sprites\spr_skull</sprite>
         <sprite>sprites\spr_skull_aggro</sprite>
       </sprites>
+      <sprites name="snake">
+        <sprite>sprites\spr_snake_head</sprite>
+        <sprite>sprites\spr_snake_body</sprite>
+      </sprites>
+      <sprite>sprites\spr_bat_awake</sprite>
+      <sprite>sprites\spr_bat</sprite>
+      <sprite>sprites\spr_axe_grunt</sprite>
+      <sprite>sprites\spr_archer</sprite>
+      <sprite>sprites\spr_arrow</sprite>
       <sprite>sprites\spr_spider</sprite>
     </sprites>
     <sprites name="Environment">
+      <sprites name="Blocks">
+        <sprite>sprites\spr_portal_clear</sprite>
+        <sprite>sprites\spr_cage</sprite>
+        <sprite>sprites\spr_crusher_active</sprite>
+        <sprite>sprites\spr_crusher_passive</sprite>
+        <sprite>sprites\spr_grass</sprite>
+        <sprite>sprites\spr_dirt</sprite>
+        <sprite>sprites\spr_wall</sprite>
+      </sprites>
       <sprite>sprites\spr_window</sprite>
       <sprite>sprites\spr_window_rain</sprite>
       <sprite>sprites\spr_window_lightning</sprite>
       <sprite>sprites\spr_candles</sprite>
-      <sprite>sprites\spr_swirl</sprite>
-      <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_box_explode</sprite>
       <sprite>sprites\spr_weapon_rack</sprite>
       <sprite>sprites\spr_box</sprite>
@@ -55,15 +60,11 @@
       <sprite>sprites\spr_button</sprite>
       <sprite>sprites\spr_button_pressed</sprite>
       <sprite>sprites\spr_door_open</sprite>
-      <sprite>sprites\spr_crusher_passive</sprite>
-      <sprite>sprites\spr_crusher_active</sprite>
       <sprite>sprites\spr_end_door</sprite>
-      <sprite>sprites\spr_grass</sprite>
-      <sprite>sprites\spr_dirt</sprite>
       <sprite>sprites\spr_painting_farmer</sprite>
       <sprite>sprites\spr_grass_one</sprite>
       <sprite>sprites\spr_grass_two</sprite>
-      <sprite>sprites\spr_portal_clear</sprite>
+      <sprite>sprites\spr_bone_pile</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -71,6 +72,7 @@
       <sprite>sprites\spr_back_button</sprite>
       <sprite>sprites\spr_boss_button</sprite>
       <sprite>sprites\spr_continue_button</sprite>
+      <sprite>sprites\spr_swirl</sprite>
     </sprites>
     <sprites name="Boss">
       <sprite>sprites\spr_fire_wall</sprite>
@@ -100,14 +102,15 @@
     <path>paths\path_boss_1</path>
   </paths>
   <scripts name="scripts">
+    <script>scripts\kill_player.gml</script>
+    <script>scripts\axe_lethal.gml</script>
+    <script>scripts\check_collision.gml</script>
+    <script>scripts\get_collision_blocks.gml</script>
+    <script>scripts\do_lightning.gml</script>
+    <script>scripts\skin_outside.gml</script>
     <script>scripts\screenshot.gml</script>
     <script>scripts\fuck_em_up.gml</script>
-    <script>scripts\kill_player.gml</script>
-    <script>scripts\check_collision.gml</script>
-    <script>scripts\do_lightning.gml</script>
     <script>scripts\next_level.gml</script>
-    <script>scripts\skin_outside.gml</script>
-    <script>scripts\get_collision_blocks.gml</script>
     <script>scripts\screw_this_archer.gml</script>
   </scripts>
   <shaders name="shaders">
@@ -134,21 +137,25 @@
       <object>objects\obj_spider</object>
     </objects>
     <objects name="Environment">
+      <objects name="Blocks">
+        <object>objects\obj_wall</object>
+        <object>objects\obj_portal_clear</object>
+        <object>objects\obj_barrier</object>
+        <object>objects\obj_background</object>
+        <object>objects\obj_crusher</object>
+        <object>objects\obj_cage</object>
+      </objects>
       <object>objects\obj_box</object>
       <object>objects\obj_weapon_rack</object>
       <object>objects\obj_candles</object>
       <object>objects\obj_window</object>
-      <object>objects\obj_wall</object>
       <object>objects\obj_door</object>
-      <object>objects\obj_barrier</object>
-      <object>objects\obj_portal_clear</object>
       <object>objects\obj_game_button</object>
-      <object>objects\obj_crusher</object>
       <object>objects\obj_end_door</object>
-      <object>objects\obj_background</object>
       <object>objects\obj_painting</object>
       <object>objects\obj_grass_one</object>
       <object>objects\obj_grass_two</object>
+      <object>objects\obj_bone_pile</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -175,8 +182,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
     <room>rooms\room_intro</room>
+    <room>rooms\room0</room>
     <room>rooms\boss_room</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>

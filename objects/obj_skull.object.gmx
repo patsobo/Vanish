@@ -127,14 +127,13 @@ y+=y_vel;
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>other</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (obj_skull.sprite_index != spr_skull_death){
-    instance_destroy()
+            <string>if (sprite_index != spr_skull_death){
     kill_player();
 }
 </string>
@@ -159,11 +158,9 @@ y+=y_vel;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(obj_axe){
-    if (vel_x != 0 &amp;&amp; vel_y != 0){
-        other.sprite_index = spr_skull_death
-        other.image_speed = .35
-    }
+            <string>if (axe_lethal(other)){
+    sprite_index = spr_skull_death
+    image_speed = .35
 }
 </string>
           </argument>

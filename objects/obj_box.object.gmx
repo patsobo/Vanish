@@ -50,8 +50,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = spr_box_explode
-image_speed = .3
+            <string>if (axe_lethal(other)){
+    sprite_index = spr_box_explode
+    image_speed = .3
+}
 </string>
           </argument>
         </arguments>
