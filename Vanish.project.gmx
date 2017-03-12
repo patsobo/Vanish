@@ -37,6 +37,8 @@
       <sprite>sprites\spr_archer</sprite>
       <sprite>sprites\spr_arrow</sprite>
       <sprite>sprites\spr_spider</sprite>
+      <sprite>sprites\spr_orb</sprite>
+      <sprite>sprites\spr_laser</sprite>
     </sprites>
     <sprites name="Environment">
       <sprites name="Blocks">
@@ -112,6 +114,7 @@
     <script>scripts\fuck_em_up.gml</script>
     <script>scripts\next_level.gml</script>
     <script>scripts\screw_this_archer.gml</script>
+    <script>scripts\shoot_laser.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -135,6 +138,8 @@
       <object>objects\obj_arrow</object>
       <object>objects\obj_fake_arrow</object>
       <object>objects\obj_spider</object>
+      <object>objects\obj_laser</object>
+      <object>objects\obj_orb</object>
     </objects>
     <objects name="Environment">
       <objects name="Blocks">
