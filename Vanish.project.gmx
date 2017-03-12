@@ -7,19 +7,20 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="Player">
+      <sprites name="hitboxes">
+        <sprite>sprites\spr_hitbox_player</sprite>
+        <sprite>sprites\spr_hitbox_flat_portal</sprite>
+      </sprites>
       <sprite>sprites\spr_jumping</sprite>
       <sprite>sprites\spr_walking</sprite>
       <sprite>sprites\spr_standing</sprite>
-      <sprite>sprites\spr_hitbox_player</sprite>
       <sprite>sprites\spr_axe</sprite>
       <sprite>sprites\spr_moving_left_portal</sprite>
       <sprite>sprites\spr_moving_right_portal</sprite>
       <sprite>sprites\spr_flat_left_portal</sprite>
       <sprite>sprites\spr_flat_right_portal</sprite>
-      <sprites name="hitboxes">
-        <sprite>sprites\spr_player_hitbox</sprite>
-        <sprite>sprites\spr_hitbox_flat_portal</sprite>
-      </sprites>
+      <sprite>sprites\spr_shield</sprite>
+      <sprite>sprites\spr_shield_flashing</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprites name="skull">
@@ -67,6 +68,7 @@
       <sprite>sprites\spr_grass_one</sprite>
       <sprite>sprites\spr_grass_two</sprite>
       <sprite>sprites\spr_bone_pile</sprite>
+      <sprite>sprites\spr_shield_pickup</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -127,6 +129,7 @@
       <object>objects\obj_portal_right</object>
       <object>objects\obj_player</object>
       <object>objects\obj_moving_portal</object>
+      <object>objects\obj_shield</object>
     </objects>
     <objects name="Enemy">
       <object>objects\obj_skull</object>
@@ -161,6 +164,7 @@
       <object>objects\obj_grass_one</object>
       <object>objects\obj_grass_two</object>
       <object>objects\obj_bone_pile</object>
+      <object>objects\obj_shield_pickup</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
