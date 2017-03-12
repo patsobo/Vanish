@@ -3,7 +3,7 @@
   <spriteName>spr_dirt</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_blend = make_color_hsv(255, 255, 255 / 4 * 3);
-depth = 10000;
 </string>
           </argument>
         </arguments>

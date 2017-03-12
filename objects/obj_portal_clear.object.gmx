@@ -3,7 +3,7 @@
   <spriteName>spr_portal_clear</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_alpha = .4;
-depth = 100
 </string>
           </argument>
         </arguments>
