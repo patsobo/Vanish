@@ -18,3 +18,7 @@ with(obj_wall){
         }
     }
 }
+
+with (obj_fake_block){
+    sprite_index = spr_grass
+}

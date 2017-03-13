@@ -85,7 +85,8 @@ alarm[0] = fire_rate;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var match_x = 0;
+            <string>///Shoot Arrow
+var match_x = 0;
 var match_y = 0;
 var match = false;
 

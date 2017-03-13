@@ -40,6 +40,8 @@
       <sprite>sprites\spr_spider</sprite>
       <sprite>sprites\spr_orb</sprite>
       <sprite>sprites\spr_laser</sprite>
+      <sprite>sprites\spr_calm_crystal</sprite>
+      <sprite>sprites\spr_angry_crystal</sprite>
     </sprites>
     <sprites name="Environment">
       <sprites name="Blocks">
@@ -143,6 +145,7 @@
       <object>objects\obj_spider</object>
       <object>objects\obj_laser</object>
       <object>objects\obj_orb</object>
+      <object>objects\obj_laser_crystal</object>
     </objects>
     <objects name="Environment">
       <objects name="Blocks">
@@ -152,6 +155,7 @@
         <object>objects\obj_background</object>
         <object>objects\obj_crusher</object>
         <object>objects\obj_cage</object>
+        <object>objects\obj_fake_block</object>
       </objects>
       <object>objects\obj_box</object>
       <object>objects\obj_weapon_rack</object>
