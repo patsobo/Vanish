@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Anti trap code
+/*
 var thres = 16;
 var stuck = false;
 with(obj_player){
@@ -35,6 +36,8 @@ with(obj_player){
             y = other.y - 7;
     }
 }
+
+*/
 </string>
           </argument>
         </arguments>

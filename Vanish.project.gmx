@@ -198,6 +198,7 @@
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
+    <room>rooms\portal_test_room</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>

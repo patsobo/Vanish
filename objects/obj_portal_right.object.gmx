@@ -27,13 +27,38 @@
             <kind>1</kind>
             <string>portal_direction = 0;
 cooldown = 0;
-COOLDOWN_TIMER = 5;
+COOLDOWN_TIMER = 30;
 image_speed = .2
 image_xscale = 1.5
 
 if(place_meeting(x,y,obj_portal_left))
 {
     instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (cooldown &gt; 0){
+    cooldown--;
 }
 </string>
           </argument>
@@ -63,26 +88,85 @@ if(place_meeting(x,y,obj_portal_left))
     var new_y;
     var x_offset = 0;
     var y_offset = 0;
-    var other_facing;
-
     
     with(obj_portal_left){
         other.new_x = x;
         other.new_y = y;
-        other_facing = portal_direction;
-        
-         switch(portal_direction){
+        var other_facing = other.portal_direction;
+        cooldown = COOLDOWN_TIMER;
+        other.facing_case = -1;
+         switch(portal_direction){//going to
             case(0):
                 x_offset = 20;
+                if(other_facing==1)//coming from
+                {
+                    other.facing_case = 1;
+                    //yvel to -xvel?
+                }
+                if(other_facing==3)
+                {
+                other.facing_case = 3;
+                    //yvel to xvel?
+                }
+                if(other_facing==0)
+                {
+                    other.facing_case = 0;
+                    //xvel to -xvel
+                }
                 break;
             case(1):
                 y_offset = -30;
+                if(other_facing==0)
+                {
+                    other.facing_case = 10;
+                    //xvel to -yvel?
+                }
+                if(other_facing==2)
+                {
+                    other.facing_case = 12;
+                    //xvel to yvel?
+                }
+                if(other_facing==1)
+                {
+                    other.facing_case = 11;
+                    //yvel to -yvel
+                }
                 break;
             case(2):
                 x_offset = -20;
+                if(other_facing==1)
+                {
+                    other.facing_case = 21;
+                    //yvel to xvel?
+                }
+                if(other_facing==3)
+                {
+                    other.facing_case = 23;
+                    //yvel to -xvel?
+                }
+                if(other_facing==2)
+                {
+                    other.facing_case = 22;
+                    //xvel to -xvel
+                }
                 break;
             case(3):
                 y_offset = 30;
+                if(other_facing==0)
+                {
+                    other.facing_case = 30;
+                    //xvel to yvel?
+                }
+                if(other_facing==2)
+                {
+                    other.facing_case = 32;
+                    //xvel to -yvel?
+                }
+                if(other_facing==3)
+                {
+                    other.facing_case = 33;
+                    //yvel to -yvel
+                }
                 break;
         }
     }
@@ -91,10 +175,53 @@ if(place_meeting(x,y,obj_portal_left))
         show_debug_message(string(x_offset) + " " + string(y_offset) + " " + string(other_facing));
         x = other.new_x + x_offset;
         y = other.new_y + y_offset;
+        switch(other.facing_case){
+            case 0:
+            case 22:
+                vel_x = -vel_x;
+                break;
+            case 11:
+            case 33:
+                vel_y = -vel_y;
+                break;
+            case 1:
+                vel_x = vel_y;
+                vel_y=0;
+                break;
+            case 3:
+                vel_x = -vel_y;
+                vel_y=0;
+                break;
+            case 10:
+                vel_y = vel_x;
+                vel_x=0;
+                break;
+            case 12:
+                vel_y = -vel_x;
+                vel_x=0;
+                break;
+            case 21:
+                vel_x = -vel_y;
+                vel_y=0;
+                break;
+            case 23:
+                vel_x = vel_y;
+                vel_y=0;
+                break;
+            case 30:
+                vel_y = -vel_x;
+                vel_x=0;
+                break;
+            case 32:
+                vel_y = vel_x;
+                vel_x=0;
+                break;      
+            default:
+              
+        }
     }
 }
-if (cooldown &gt; 0)
-    cooldown--;
+
 </string>
           </argument>
         </arguments>
