@@ -52,6 +52,8 @@
         <sprite>sprites\spr_grass</sprite>
         <sprite>sprites\spr_dirt</sprite>
         <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_wall_half</sprite>
+        <sprite>sprites\spr_wall_slit</sprite>
       </sprites>
       <sprite>sprites\spr_window</sprite>
       <sprite>sprites\spr_window_rain</sprite>
@@ -71,6 +73,7 @@
       <sprite>sprites\spr_grass_two</sprite>
       <sprite>sprites\spr_bone_pile</sprite>
       <sprite>sprites\spr_shield_pickup</sprite>
+      <sprite>sprites\spr_key</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
@@ -156,6 +159,8 @@
         <object>objects\obj_crusher</object>
         <object>objects\obj_cage</object>
         <object>objects\obj_fake_block</object>
+        <object>objects\obj_wall_slit</object>
+        <object>objects\obj_wall_half</object>
       </objects>
       <object>objects\obj_box</object>
       <object>objects\obj_weapon_rack</object>
@@ -169,6 +174,7 @@
       <object>objects\obj_grass_two</object>
       <object>objects\obj_bone_pile</object>
       <object>objects\obj_shield_pickup</object>
+      <object>objects\obj_key</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_control</object>
@@ -196,9 +202,10 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\room_intro</room>
+    <room>rooms\room1</room>
+    <room>rooms\portal_test_room</room>
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
-    <room>rooms\portal_test_room</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>

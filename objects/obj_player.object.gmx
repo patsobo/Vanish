@@ -34,19 +34,19 @@ global.left_portal = ord('Q');
 global.right_portal = ord('E');
 global.jump = ord('W');
 global.throw = mb_left;
-move_speed = .75/2;
-air_move_speed = 2/2;
+move_speed = .6;
+air_move_speed = .2;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
 
-jump_speed = 12;
+jump_speed = 10;
 jump_time = 12;
 steps = 0;
 
-dampening = .95;//smaller is more dampening
+dampening = .98;//smaller is more dampening
 frict = .9;//changes the dampening when in contact with the ground
 height=36;
 width=18;
@@ -86,7 +86,7 @@ vel_x+=gravity_x;
 vel_y+=gravity_y;
 
 //Dampening
-if(abs(vel_x) &lt; 1)
+if(abs(vel_x) &lt; .1)
     vel_x=0;
 vel_x*=dampening;
 //if on ground apply friction
@@ -266,8 +266,8 @@ if (keyboard_check(global.right_portal)){
             var x_vec = mouse_x - x;
             var y_vec = mouse_y - y;
             var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
-            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
-            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+            vel_x = sign(x_vec)*abs(x_percent) * travel_speed;
+            vel_y = sign(y_vec)*abs((1-x_percent)) * travel_speed;
             image_angle = radtodeg(arctan(vel_y / -vel_x));
             portal_id=1;
         }

@@ -6,7 +6,7 @@ with(obj_wall){
     }
     
     var i;
-    for (i = y + 32; i < room_height; i+=32){
+    for (i = y + 32; i < room_height + 64; i+=32){
         if place_meeting(x,i, obj_wall){
             //instance_create(x,i-32, obj_background);
             

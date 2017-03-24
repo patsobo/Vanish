@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>portal_direction = 0;
+            <string>//portal_direction = 0;
 cooldown = 0;
 COOLDOWN_TIMER = 30;
 image_speed = .2
@@ -35,6 +35,8 @@ if(place_meeting(x,y,obj_portal_left))
 {
     instance_destroy();
 }
+
+
 </string>
           </argument>
         </arguments>
