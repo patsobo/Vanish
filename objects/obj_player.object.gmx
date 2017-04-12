@@ -34,15 +34,15 @@ global.left_portal = ord('Q');
 global.right_portal = ord('E');
 global.jump = ord('W');
 global.throw = mb_left;
-move_speed = .75/2;
-air_move_speed = 2/2;
+move_speed = .5;
+air_move_speed = .7;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
 
-jump_speed = 12;
+jump_speed = 10;
 jump_time = 12;
 steps = 0;
 
@@ -86,7 +86,7 @@ vel_x+=gravity_x;
 vel_y+=gravity_y;
 
 //Dampening
-if(abs(vel_x) &lt; 1)
+if(abs(vel_x) &lt; .1)
     vel_x=0;
 vel_x*=dampening;
 //if on ground apply friction

@@ -181,6 +181,7 @@
       <object>objects\obj_room0_control</object>
       <object>objects\obj_room_intro_control</object>
       <object>objects\obj_continue</object>
+      <object>objects\obj_entry_levl_control</object>
     </objects>
     <objects name="Boss">
       <object>objects\obj_fire_wall</object>
@@ -195,6 +196,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\entry_level</room>
+    <room>rooms\room7</room>
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
@@ -204,7 +207,6 @@
       <room>rooms\menu</room>
       <room>rooms\nextRoom</room>
     </rooms>
-    <room>rooms\entry_level</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
