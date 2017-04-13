@@ -32,7 +32,11 @@ global.up = ord('W');
 global.down = ord('S');
 global.left_portal = ord('Q');
 global.right_portal = ord('E');
-global.jump = ord('W');
+global.jump = ds_list_create();
+ds_list_add(global.jump, ord('W'));
+ds_list_add(global.jump, vk_space);
+
+//global.jump = ord('W');
 global.throw = mb_left;
 move_speed = .5;
 air_move_speed = .7;
@@ -41,13 +45,18 @@ throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
+wall_friction = false;
 
 jump_speed = 10;
 jump_time = 12;
 steps = 0;
 
+wall_jump_vertical = 1.4;
+wall_jump_horizontal = 1;
+
 dampening = .95;//smaller is more dampening
 frict = .9;//changes the dampening when in contact with the ground
+wfrict = .7;//changes the dampening when holding against a wall
 height=36;
 width=18;
 
@@ -94,6 +103,8 @@ vel_x*=dampening;
 //if on ground apply friction
 if (check_collision(x, y+1, object_index))
     vel_x*=frict;
+if (wall_friction)//holding against a wall
+    vel_y*=wfrict;
 vel_y*=dampening;
 
 
@@ -162,7 +173,7 @@ if (y &gt; room_height-1)
     kill_player();
     
 in_air = !check_collision(x, y+1, object_index)
-
+wall_friction = false;
 if( keyboard_check(global.left))
 {
     with(obj_player){
@@ -175,13 +186,25 @@ if( keyboard_check(global.left))
             image_speed = .2;
         } 
     }
+    if ( check_collision(x-1,y, object_index))//wall jump
+    {
+        //apply wall friction
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+        
+            wall_friction=true;
+            if(keyboard_check_pressed_any(global.jump)){
+                vel_x+=wall_jump_horizontal*jump_speed;
+                vel_y-=wall_jump_vertical*jump_speed;
+            }
+        }
+    }
     //if( place_meeting(x,y+1,obj_wall))// On ground?
     if (check_collision(x, y+1, object_index))
         vel_x-=move_speed;
     vel_x-=air_move_speed ;
 }
 
-if(keyboard_check_pressed(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
+if(keyboard_check_pressed_any(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
 {
     sprite_index = spr_jumping;
     jumping = true;
@@ -192,7 +215,7 @@ if(jumping) {
     if(steps % 2 == 1)
         vel_y-=(jump_speed/steps);
 }
-if(steps&gt; jump_time || keyboard_check_released(global.jump) || check_collision(x, y-1, object_index)){
+if(steps&gt; jump_time || keyboard_check_released_any(global.jump) || check_collision(x, y-1, object_index)){
     jumping = false;
 }
 if( keyboard_check(global.right))
@@ -206,6 +229,18 @@ if( keyboard_check(global.right))
             image_xscale = 1;
             image_speed = .2;
         }   
+    }
+    if ( check_collision(x+1,y, object_index))//wall jump
+    {
+        //apply wall friction
+        
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+            wall_friction=true;
+            if(keyboard_check_pressed_any(global.jump)){
+                vel_x-=wall_jump_horizontal*jump_speed;
+                vel_y-=wall_jump_vertical*jump_speed;
+            }
+        }
     }
     if(check_collision(x, y+1, object_index))// On ground?
         vel_x+=move_speed;

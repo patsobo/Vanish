@@ -121,6 +121,8 @@
     <script>scripts\screw_this_archer.gml</script>
     <script>scripts\shoot_laser.gml</script>
     <script>scripts\anti_stuck_code.gml</script>
+    <script>scripts\keyboard_check_pressed_any.gml</script>
+    <script>scripts\keyboard_check_released_any.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -205,6 +207,7 @@
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
     <room>rooms\portal_test_room</room>
+    <room>rooms\wall_jump_testing</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>
