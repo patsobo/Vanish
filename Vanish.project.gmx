@@ -40,6 +40,7 @@
       <sprite>sprites\spr_spider</sprite>
       <sprite>sprites\spr_orb</sprite>
       <sprite>sprites\spr_laser</sprite>
+      <sprite>sprites\spr_laser_small</sprite>
       <sprite>sprites\spr_calm_crystal</sprite>
       <sprite>sprites\spr_angry_crystal</sprite>
     </sprites>
@@ -119,6 +120,7 @@
     <script>scripts\next_level.gml</script>
     <script>scripts\screw_this_archer.gml</script>
     <script>scripts\shoot_laser.gml</script>
+    <script>scripts\anti_stuck_code.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
@@ -171,8 +173,8 @@
       <object>objects\obj_shield_pickup</object>
     </objects>
     <objects name="Control">
-      <object>objects\obj_control</object>
       <object>objects\obj_fade</object>
+      <object>objects\obj_control</object>
       <object>objects\obj_reload</object>
       <object>objects\obj_button</object>
       <object>objects\obj_main_menu</object>
@@ -181,7 +183,6 @@
       <object>objects\obj_room0_control</object>
       <object>objects\obj_room_intro_control</object>
       <object>objects\obj_continue</object>
-      <object>objects\obj_entry_levl_control</object>
     </objects>
     <objects name="Boss">
       <object>objects\obj_fire_wall</object>
@@ -196,7 +197,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\entry_level</room>
+    <room>rooms\eye_see_you</room>
     <room>rooms\room7</room>
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>

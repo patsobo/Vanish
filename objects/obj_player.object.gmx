@@ -81,6 +81,8 @@ vel_y=0;
             <kind>1</kind>
             <string>///Physics
 
+anti_stuck_code();
+
 //Gravity
 vel_x+=gravity_x;
 vel_y+=gravity_y;
