@@ -177,6 +177,7 @@
       <object>objects\obj_grass_two</object>
       <object>objects\obj_bone_pile</object>
       <object>objects\obj_shield_pickup</object>
+      <object>objects\obj_aspen</object>
     </objects>
     <objects name="Control">
       <object>objects\obj_fade</object>
