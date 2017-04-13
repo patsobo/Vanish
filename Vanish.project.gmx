@@ -72,6 +72,7 @@
       <sprite>sprites\spr_grass_two</sprite>
       <sprite>sprites\spr_bone_pile</sprite>
       <sprite>sprites\spr_shield_pickup</sprite>
+      <sprite>sprites\spr_aspen</sprite>
     </sprites>
     <sprites name="Control">
       <sprite>sprites\spr_reload</sprite>
