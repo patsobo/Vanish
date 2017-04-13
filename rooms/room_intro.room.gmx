@@ -10,7 +10,85 @@
   <persistent>0</persistent>
   <colour>8404992</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>global.current_room = room_intro;
+global.next_room = room0;
+
+//with(obj_wall){
+//    sprite_index = spr_grass;
+//}
+skin_outside();
+
+var barriers1;
+var xs1;
+var ys1;
+
+var i;
+for (i = 0; i &lt; 4; i++){
+    barriers1[i] = obj_barrier;
+    xs1[i] = 1664
+    ys1[i] = 416 + i * 32
+}
+
+var button1 = instance_create(1656,540,obj_game_button);
+with(button1){
+    image_angle = 0;
+    create = false;
+    destroy = true;
+    reset_timer = room_speed * 2; // 2 second reset
+    control_objs = barriers1;
+    x_pos = xs1
+    y_pos = ys1
+    
+}
+
+var barriers2;
+var xs2;
+var ys2;
+
+var j;
+for (j = 0; j &lt; 3; j++){
+    barriers2[j] = obj_wall;
+    xs2[j] = 2176;
+    ys2[j] = 640 + 32 * j;
+}
+
+var button2 = instance_create(1668,732,obj_game_button);
+with(button2){
+    image_angle = 0;
+    create = false;
+    destroy = true;
+    reset_timer = 0; //no reset
+    control_objs = barriers2;
+    x_pos = xs2
+    y_pos = ys2
+    
+}
+
+var barriers3;
+var xs3;
+var ys3;
+
+var k;
+for (k = 0; k &lt; 3; k++){
+    barriers3[k] = obj_wall;
+    xs3[k] = 2656
+    ys3[k] = 640 + 32 * k
+}
+
+var button3 = instance_create(1092,36,obj_game_button);
+with(button3){
+    image_angle = 270;
+    create = false;
+    destroy = true;
+    reset_timer = 0; // no reset
+    control_objs = barriers3;
+    x_pos = xs3
+    y_pos = ys3
+    
+}
+
+var t = instance_create(0,0, obj_title);
+t.text = "Level 0";</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -370,7 +448,6 @@
     <instance objName="obj_wall" x="2656" y="64" name="inst_FA321D82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="2656" y="32" name="inst_FD8ABB6D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="2656" y="0" name="inst_116653C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_room_intro_control" x="32" y="0" name="inst_FFDE5709" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_snake_head" x="2356" y="728" name="inst_5C68B01F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_end_door" x="2944" y="688" name="inst_CEAE0DEF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tut_move" x="0" y="384" name="inst_6DC7226C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

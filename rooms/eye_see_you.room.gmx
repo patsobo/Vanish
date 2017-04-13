@@ -15,7 +15,10 @@ global.next_room = room_intro;
 
 with(obj_end_door){
     next_room = room_intro
-}</code>
+}
+
+var title_screen = instance_create(0,0, obj_title);
+title_screen.text = "Level 4#Eye See You";</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

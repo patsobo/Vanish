@@ -126,6 +126,9 @@
     <shader type="GLSLES">shaders\shader_silhouette.shader</shader>
     <shader type="GLSLES">shaders\shader_white.shader</shader>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\font_title</font>
+  </fonts>
   <objects name="objects">
     <objects name="Player">
       <object>objects\obj_axe</object>
@@ -180,9 +183,8 @@
       <object>objects\obj_main_menu</object>
       <object>objects\obj_pause</object>
       <object>objects\obj_boss_control</object>
-      <object>objects\obj_room0_control</object>
-      <object>objects\obj_room_intro_control</object>
       <object>objects\obj_continue</object>
+      <object>objects\obj_title</object>
     </objects>
     <objects name="Boss">
       <object>objects\obj_fire_wall</object>
