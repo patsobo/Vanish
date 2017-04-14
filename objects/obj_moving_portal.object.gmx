@@ -81,8 +81,14 @@ if(check_collision(x,y+vel_y,object_index))
         yn += sign(vel_y);
     }
 }
-x=floor(xn);
-y=floor(yn);
+if(sign(vel_x&gt;0))
+    x=floor(xn);
+else
+    x = ceil(xn);
+if(sign(vel_y&gt;0))
+    y=floor(yn);
+else
+    y= ceil(yn);
 
 
 
