@@ -38,8 +38,9 @@ ds_list_add(global.jump, vk_space);
 
 //global.jump = ord('W');
 global.throw = mb_left;
-move_speed = .5;
-air_move_speed = .7;
+move_speed = 1.75;
+air_move_speed = .3;
+max_move_speed = 5;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
@@ -47,15 +48,15 @@ ammo = MAX_AMMO;
 in_air = false;
 wall_friction = false;
 
-jump_speed = 10;
+jump_speed = 8;
 jump_time = 12;
 steps = 0;
 
-wall_jump_vertical = 1;
+wall_jump_vertical = 1.1;
 wall_jump_horizontal = 1;
 
-dampening = .95;//smaller is more dampening
-frict = .9;//changes the dampening when in contact with the ground
+dampening = .999;//smaller is more dampening
+frict = .75;//changes the dampening when in contact with the ground
 wfrict = .7;//changes the dampening when holding against a wall
 height=36;
 width=18;

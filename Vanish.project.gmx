@@ -219,13 +219,13 @@
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>
     <room>rooms\boss_room</room>
-    <room>rooms\wall_jump_testing</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>
       <room>rooms\nextRoom</room>
       <room>rooms\rm_level_select</room>
     </rooms>
+    <room>rooms\wall_jump_testing</room>
     <room>rooms\room10</room>
   </rooms>
   <help>
