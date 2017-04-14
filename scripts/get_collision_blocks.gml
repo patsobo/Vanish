@@ -8,16 +8,21 @@ if (current_obj == obj_player){
     collision_checks[3] = obj_crusher;
     collision_checks[4] = obj_cage;
     collision_checks[5] = obj_orb;
+    collision_checks[6] = obj_wall_slit;
+    collision_checks[7] = obj_wall_half;
     
 } else if (current_obj == obj_axe){
     collision_checks[0] = obj_wall;
     collision_checks[1] = obj_crusher;
     collision_checks[2] = obj_cage;
     collision_checks[3] = obj_orb;
+    collision_checks[4] = obj_wall_slit;
+    collision_checks[5] = obj_wall_half;    
 
 // Could delete because default option
 } else if (current_obj == obj_moving_portal){
     collision_checks[0] = obj_wall;
+    collision_checks[1] = obj_wall_half;    
     
 } else if (current_obj == obj_axe_grunt){
     collision_checks[0] = obj_wall;

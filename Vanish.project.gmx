@@ -52,6 +52,8 @@
         <sprite>sprites\spr_crusher_passive</sprite>
         <sprite>sprites\spr_grass</sprite>
         <sprite>sprites\spr_dirt</sprite>
+        <sprite>sprites\spr_wall_slit</sprite>
+        <sprite>sprites\spr_wall_half</sprite>
         <sprite>sprites\spr_wall</sprite>
       </sprites>
       <sprite>sprites\spr_window</sprite>
@@ -60,6 +62,7 @@
       <sprite>sprites\spr_candles</sprite>
       <sprite>sprites\spr_box_explode</sprite>
       <sprite>sprites\spr_weapon_rack</sprite>
+      <sprite>sprites\spr_key</sprite>
       <sprite>sprites\spr_box</sprite>
       <sprite>sprites\spr_door</sprite>
       <sprite>sprites\spr_barrier</sprite>
@@ -172,6 +175,9 @@
       <object>objects\obj_candles</object>
       <object>objects\obj_window</object>
       <object>objects\obj_door</object>
+      <object>objects\obj_key</object>
+      <object>objects\obj_wall_half</object>
+      <object>objects\obj_wall_slit</object>
       <object>objects\obj_game_button</object>
       <object>objects\obj_end_door</object>
       <object>objects\obj_painting</object>
@@ -205,6 +211,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room1</room>
     <room>rooms\portal_test_room</room>
     <room>rooms\first_room</room>
     <room>rooms\eye_see_you</room>
