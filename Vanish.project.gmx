@@ -215,6 +215,7 @@
       <room>rooms\menu</room>
       <room>rooms\nextRoom</room>
     </rooms>
+    <room>rooms\room10</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

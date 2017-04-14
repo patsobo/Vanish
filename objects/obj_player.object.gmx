@@ -46,6 +46,7 @@ MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
 wall_friction = false;
+is_dead = false;
 
 jump_speed = 10;
 jump_time = 12;
@@ -174,141 +175,146 @@ if (y &gt; room_height-1)
     
 in_air = !check_collision(x, y+1, object_index)
 wall_friction = false;
-if( keyboard_check(global.left))
-{
-    with(obj_player){
-        if (in_air){
-            sprite_index = spr_jumping;
-            image_xscale = -1;
-        } else {
-            sprite_index = spr_walking;
-            image_xscale = -1;
-            image_speed = .2;
-        } 
-    }
-    if ( check_collision(x-1,y, object_index))//wall jump
+
+if(!is_dead){
+    if( keyboard_check(global.left))
     {
-        //apply wall friction
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-        
-            wall_friction=true;
-            if(keyboard_check_pressed_any(global.jump)){
-                vel_x+=wall_jump_horizontal*jump_speed;
-                vel_y-=wall_jump_vertical*jump_speed;
+        with(obj_player){
+            if (in_air){
+                sprite_index = spr_jumping;
+                image_xscale = -1;
+            } else {
+                sprite_index = spr_walking;
+                image_xscale = -1;
+                image_speed = .2;
+            } 
+        }
+        if ( check_collision(x-1,y, object_index))//wall jump
+        {
+            //apply wall friction
+            if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+            
+                wall_friction=true;
+                if(keyboard_check_pressed_any(global.jump)){
+                    vel_x+=wall_jump_horizontal*jump_speed;
+                    vel_y-=wall_jump_vertical*jump_speed;
+                }
+            }
+        }
+        //if( place_meeting(x,y+1,obj_wall))// On ground?
+        if (check_collision(x, y+1, object_index))
+            vel_x-=move_speed;
+        vel_x-=air_move_speed ;
+    }
+    
+    if(keyboard_check_pressed_any(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
+    {
+        sprite_index = spr_jumping;
+        jumping = true;
+        steps = 0;
+    }
+    if(jumping) {
+        steps+=1;
+        if(steps % 2 == 1)
+            vel_y-=(jump_speed/steps);
+    }
+    if(steps&gt; jump_time || keyboard_check_released_any(global.jump) || check_collision(x, y-1, object_index)){
+        jumping = false;
+    }
+    if( keyboard_check(global.right))
+    {
+        with(obj_player){
+            if (in_air){
+                sprite_index = spr_jumping;
+                image_xscale = 1;
+            } else {
+                sprite_index = spr_walking;
+                image_xscale = 1;
+                image_speed = .2;
+            }   
+        }
+        if ( check_collision(x+1,y, object_index))//wall jump
+        {
+            //apply wall friction
+            
+            if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+                wall_friction=true;
+                if(keyboard_check_pressed_any(global.jump)){
+                    vel_x-=wall_jump_horizontal*jump_speed;
+                    vel_y-=wall_jump_vertical*jump_speed;
+                }
+            }
+        }
+        if(check_collision(x, y+1, object_index))// On ground?
+            vel_x+=move_speed;
+        vel_x+=air_move_speed ;
+    }
+    
+    if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
+        with(obj_player){
+            if (in_air){
+                sprite_index = spr_jumping;
+            } else {
+                sprite_index = spr_standing;
+                image_speed = .2;
+            }     
+        }
+    }
+    
+    
+    //if( (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+height,obj_wall)) &amp;&amp; vel_y &lt;= 0 &amp;&amp; keyboard_check(global.jump))
+    //{
+    //    vel_y-=jump_speed ;
+    //}
+    if(mouse_check_button_pressed(global.throw))
+    {
+        if (ammo &gt; 0){
+            ammo--;
+            var inst = instance_create(x,y,obj_axe);
+            with(inst){
+                var del_x = mouse_x-x;
+                var del_y = mouse_y-y;
+                var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
+                vel_x=other.throw_momentum_percent*other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
+                vel_y=other.throw_momentum_percent*other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
+                image_xscale=sign(vel_x);
             }
         }
     }
-    //if( place_meeting(x,y+1,obj_wall))// On ground?
-    if (check_collision(x, y+1, object_index))
-        vel_x-=move_speed;
-    vel_x-=air_move_speed ;
-}
-
-if(keyboard_check_pressed_any(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
-{
-    sprite_index = spr_jumping;
-    jumping = true;
-    steps = 0;
-}
-if(jumping) {
-    steps+=1;
-    if(steps % 2 == 1)
-        vel_y-=(jump_speed/steps);
-}
-if(steps&gt; jump_time || keyboard_check_released_any(global.jump) || check_collision(x, y-1, object_index)){
-    jumping = false;
-}
-if( keyboard_check(global.right))
-{
-    with(obj_player){
-        if (in_air){
-            sprite_index = spr_jumping;
-            image_xscale = 1;
-        } else {
-            sprite_index = spr_walking;
-            image_xscale = 1;
-            image_speed = .2;
-        }   
-    }
-    if ( check_collision(x+1,y, object_index))//wall jump
-    {
-        //apply wall friction
-        
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-            wall_friction=true;
-            if(keyboard_check_pressed_any(global.jump)){
-                vel_x-=wall_jump_horizontal*jump_speed;
-                vel_y-=wall_jump_vertical*jump_speed;
+    
+    if (keyboard_check(global.left_portal)){
+        if (instance_number(obj_moving_portal) &lt; 1){
+            var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
+            with(inst){
+                sprite_index = spr_moving_left_portal;
+                var x_vec = mouse_x - x;
+                var y_vec = mouse_y - y;
+                var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+                vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+                vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+                image_angle = radtodeg(arctan(vel_y / -vel_x));
+                portal_id=0;
             }
         }
     }
-    if(check_collision(x, y+1, object_index))// On ground?
-        vel_x+=move_speed;
-    vel_x+=air_move_speed ;
-}
-
-if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
-    with(obj_player){
-        if (in_air){
-            sprite_index = spr_jumping;
-        } else {
-            sprite_index = spr_standing;
-            image_speed = .2;
-        }     
-    }
-}
-
-
-//if( (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+height,obj_wall)) &amp;&amp; vel_y &lt;= 0 &amp;&amp; keyboard_check(global.jump))
-//{
-//    vel_y-=jump_speed ;
-//}
-if(mouse_check_button_pressed(global.throw))
-{
-    if (ammo &gt; 0){
-        ammo--;
-        var inst = instance_create(x,y,obj_axe);
-        with(inst){
-            var del_x = mouse_x-x;
-            var del_y = mouse_y-y;
-            var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-            vel_x=other.throw_momentum_percent*other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
-            vel_y=other.throw_momentum_percent*other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
-            image_xscale=sign(vel_x);
+    
+    if (keyboard_check(global.right_portal)){
+        if (instance_number(obj_moving_portal) &lt; 1){
+            var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
+            with(inst){
+                sprite_index = spr_moving_right_portal;
+                var x_vec = mouse_x - x;
+                var y_vec = mouse_y - y;
+                var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+                vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+                vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+                image_angle = radtodeg(arctan(vel_y / -vel_x));
+                portal_id=1;
+            }
         }
     }
-}
-
-if (keyboard_check(global.left_portal)){
-    if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
-        with(inst){
-            sprite_index = spr_moving_left_portal;
-            var x_vec = mouse_x - x;
-            var y_vec = mouse_y - y;
-            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
-            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
-            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
-            image_angle = radtodeg(arctan(vel_y / -vel_x));
-            portal_id=0;
-        }
-    }
-}
-
-if (keyboard_check(global.right_portal)){
-    if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
-        with(inst){
-            sprite_index = spr_moving_right_portal;
-            var x_vec = mouse_x - x;
-            var y_vec = mouse_y - y;
-            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
-            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
-            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
-            image_angle = radtodeg(arctan(vel_y / -vel_x));
-            portal_id=1;
-        }
-    }
+}else{
+    vel_x = 0;
 }
 
 /*if(keyboard_check(global.left_portal))
