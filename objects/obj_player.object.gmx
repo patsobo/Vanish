@@ -100,7 +100,7 @@ vel_x+=gravity_x;
 vel_y+=gravity_y;
 
 //Dampening
-if(abs(vel_x) &lt; .0)
+if(abs(vel_x) &lt; .1)
     vel_x=0;
 vel_x*=dampening;
 //if on ground apply friction
