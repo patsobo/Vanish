@@ -1,9 +1,10 @@
 var p1 = argument[0];
 var p2 = argument[1];
 var obj = argument[2];
-
+var COOLDOWN = 10;
 if(instance_number(p2) > 0 && p1.cooldown == 0) {
-    p1.cooldown = p1.COOLDOWN_TIMER;
+    p1.cooldown = COOLDOWN;
+    show_debug_message(string(p1.cooldown));
     var new_x;
     var new_y;
     var x_offset = 0;
@@ -12,11 +13,11 @@ if(instance_number(p2) > 0 && p1.cooldown == 0) {
         new_x = x;
         new_y = y;
         var other_facing = p1.portal_direction
-        cooldown = COOLDOWN_TIMER;
+        cooldown = COOLDOWN;
         p1.facing_case = -1;
         switch(portal_direction){//going to
             case(0):
-                x_offset = 20;
+                x_offset = 12;
                 if(other_facing==1)//coming from
                 {
                     p1.facing_case = 1;
@@ -34,7 +35,7 @@ if(instance_number(p2) > 0 && p1.cooldown == 0) {
                 }
                 break;
             case(1):
-                y_offset = -30;
+                y_offset = -16;
                 if(other_facing==0)
                 {
                     p1.facing_case = 10;
@@ -52,7 +53,7 @@ if(instance_number(p2) > 0 && p1.cooldown == 0) {
                 }
                 break;
             case(2):
-                x_offset = -20;
+                x_offset = -12;
                 if(other_facing==1)
                 {
                     p1.facing_case = 21;
@@ -70,7 +71,7 @@ if(instance_number(p2) > 0 && p1.cooldown == 0) {
                 }
                 break;
             case(3):
-                y_offset = 30;
+                y_offset = 16;
                 if(other_facing==0)
                 {
                     p1.facing_case = 30;
