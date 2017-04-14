@@ -40,7 +40,8 @@ ds_list_add(global.jump, vk_space);
 global.throw = mb_left;
 move_speed = 1.75;
 air_move_speed = .3;
-max_move_speed = 5;
+max_move_speed = 15;
+max_absolute_speed = 40;
 throw_speed = 25;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
@@ -93,7 +94,6 @@ has_kay = false;
           <argument>
             <kind>1</kind>
             <string>///Physics
-
 anti_stuck_code();
 
 //Gravity
@@ -110,9 +110,11 @@ if (check_collision(x, y+1, object_index))
 if (wall_friction)//holding against a wall
     vel_y*=wfrict;
 vel_y*=dampening;
-
-
-
+if(abs(vel_x) &gt; max_absolute_speed)
+    vel_x = sign(vel_x)* max_absolute_speed;
+if(abs(vel_y) &gt; max_absolute_speed)
+    vel_y = sign(vel_y)* max_absolute_speed;
+    
 //Update position
 if (check_collision(x + vel_x, y, object_index))
 {
@@ -248,7 +250,7 @@ if( keyboard_check(global.right))
     }
     if(check_collision(x, y+1, object_index))// On ground?
         vel_x+=move_speed;
-    vel_x+=air_move_speed ;
+    vel_x+=air_move_speed;
 }
 
 if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
