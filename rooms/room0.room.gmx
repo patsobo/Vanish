@@ -12,15 +12,8 @@
   <showcolour>-1</showcolour>
   <code>/// Make buttons!
 
-global.current_room = room0;
-global.next_room = boss_room;
-
-with(obj_end_door){
-    next_room = boss_room
-}
-
 var t = instance_create(0,0, obj_title);
-t.text = "The original";
+t.text = "The Original";
 
 var barriers1;
 var xs1;

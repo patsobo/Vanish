@@ -68,9 +68,6 @@ gravity_y =1;
 jumping = false;
 vel_x=0;
 vel_y=0;
-
-// key stuff for now
-has_kay = false;
 </string>
           </argument>
         </arguments>
@@ -195,7 +192,7 @@ if( keyboard_check(global.left))
     if ( check_collision(x-1,y, object_index))//wall jump
     {
         //apply wall friction
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index) &amp;&amp; vel_y &gt;=0){
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
         
             wall_friction=true;
             /*if(keyboard_check_pressed_any(global.jump)){
@@ -240,7 +237,7 @@ if( keyboard_check(global.right))
     {
         //apply wall friction
         
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index) &amp;&amp; vel_y &gt;=0){
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
             wall_friction=true;
             /*if(keyboard_check_pressed_any(global.jump)){
                 vel_x-=wall_jump_horizontal*jump_speed;
@@ -376,29 +373,6 @@ if(keyboard_check(global.right_portal))
     }
 }*/
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_key">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>has_key = true;
 </string>
           </argument>
         </arguments>

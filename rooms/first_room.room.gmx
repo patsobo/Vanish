@@ -26,9 +26,8 @@ global.current_room = menu;
 
 global.level_order[0] = room_intro;
 global.level_order[1] = room0;
-global.level_order[2] = room1;
-global.level_order[3] = eye_see_you;
-global.level_order[4] = boss_room;
+global.level_order[2] = eye_see_you;
+global.level_order[3] = boss_room;
 
 room_goto(menu);</code>
   <enableViews>0</enableViews>

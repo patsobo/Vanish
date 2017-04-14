@@ -10,13 +10,7 @@
   <persistent>0</persistent>
   <colour>8404992</colour>
   <showcolour>-1</showcolour>
-  <code>global.current_room = room_intro;
-global.next_room = room0;
-
-//with(obj_wall){
-//    sprite_index = spr_grass;
-//}
-skin_outside();
+  <code>skin_outside();
 
 var barriers1;
 var xs1;

@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(global.current_room);
+            <string>room_goto(global.level_order[global.index]);
 </string>
           </argument>
         </arguments>

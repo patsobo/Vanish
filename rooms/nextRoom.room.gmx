@@ -12,7 +12,10 @@
   <showcolour>-1</showcolour>
   <code>var button = instance_create(240, 320, obj_button);
 button.sprite_index = spr_continue_button;
-button.gotoRoom     = global.next_room;</code>
+if (global.index != -1)
+    button.gotoRoom     = global.level_order[global.index];
+else
+    button.gotoRoom     = menu;</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
