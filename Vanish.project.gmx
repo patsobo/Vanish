@@ -201,13 +201,13 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\wall_jump_testing</room>
     <room>rooms\eye_see_you</room>
     <room>rooms\room7</room>
     <room>rooms\room_intro</room>
-    <room>rooms\room0</room>
     <room>rooms\boss_room</room>
+    <room>rooms\room0</room>
     <room>rooms\portal_test_room</room>
-    <room>rooms\wall_jump_testing</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>
       <room>rooms\menu</room>

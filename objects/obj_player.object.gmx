@@ -51,7 +51,7 @@ jump_speed = 10;
 jump_time = 12;
 steps = 0;
 
-wall_jump_vertical = 1.4;
+wall_jump_vertical = 1;
 wall_jump_horizontal = 1;
 
 dampening = .95;//smaller is more dampening
@@ -192,10 +192,10 @@ if( keyboard_check(global.left))
         if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
         
             wall_friction=true;
-            if(keyboard_check_pressed_any(global.jump)){
+            /*if(keyboard_check_pressed_any(global.jump)){
                 vel_x+=wall_jump_horizontal*jump_speed;
                 vel_y-=wall_jump_vertical*jump_speed;
-            }
+            }*/
         }
     }
     //if( place_meeting(x,y+1,obj_wall))// On ground?
@@ -236,10 +236,10 @@ if( keyboard_check(global.right))
         
         if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
             wall_friction=true;
-            if(keyboard_check_pressed_any(global.jump)){
+            /*if(keyboard_check_pressed_any(global.jump)){
                 vel_x-=wall_jump_horizontal*jump_speed;
                 vel_y-=wall_jump_vertical*jump_speed;
-            }
+            }*/
         }
     }
     if(check_collision(x, y+1, object_index))// On ground?
@@ -310,6 +310,28 @@ if (keyboard_check(global.right_portal)){
         }
     }
 }
+//wall jumping
+if ( check_collision(x-1,y, object_index)){//wall jump
+    if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+        if(keyboard_check_pressed_any(global.jump)){
+            vel_x+=wall_jump_horizontal*jump_speed;
+            vel_y-=wall_jump_vertical*jump_speed;
+            wall_friction = false;
+        }
+    }
+}
+if ( check_collision(x+1,y, object_index)){//wall jump
+    if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+        if(keyboard_check_pressed_any(global.jump)){
+            vel_x-=wall_jump_horizontal*jump_speed;
+            vel_y-=wall_jump_vertical*jump_speed;
+            wall_friction = false;
+        }
+    }
+}
+
+
+
 
 /*if(keyboard_check(global.left_portal))
 {
@@ -347,9 +369,6 @@ if(keyboard_check(global.right_portal))
         sprite_index=spr_right_portal;
     }
 }*/
-
-
-
 
 </string>
           </argument>
