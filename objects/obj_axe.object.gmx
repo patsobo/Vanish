@@ -82,24 +82,32 @@ if(!check_collision(x,y+1,object_index))
 //Update position
 if(check_collision(x+vel_x,y,object_index))
 {
-    while(!check_collision(x+sign(vel_x),y,object_index))
+    var xn = x;
+    while(!check_collision(xn+sign(vel_x),y,object_index))
     {
-        x += sign(vel_x);
+        xn += sign(vel_x);
     }
-    vel_x = 0;
+    x=xn;
+    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
+        vel_x = 0;
 }
-x+=vel_x;
+else
+    x+=vel_x;
 
 
 if(check_collision(x,y+vel_y,object_index))
 {
-    while(!check_collision(x,y+sign(vel_y),object_index))
+    var yn = y;
+    while(!check_collision(x,yn+sign(vel_y),object_index))
     {
-        y += sign(vel_y);
+        yn += sign(vel_y);
     }
-    vel_y = 0;
+    y= yn;
+    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
+        vel_y = 0;
 }
-y+=vel_y;
+else
+    y+=vel_y;
 
 if (x &lt; 0 || x &gt; room_width || y &lt; 0 || y &gt; room_height)
     instance_destroy();
