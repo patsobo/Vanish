@@ -189,7 +189,7 @@ if( keyboard_check(global.left))
     if ( check_collision(x-1,y, object_index))//wall jump
     {
         //apply wall friction
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index) &amp;&amp; vel_y &gt;=0){
         
             wall_friction=true;
             /*if(keyboard_check_pressed_any(global.jump)){
@@ -234,7 +234,7 @@ if( keyboard_check(global.right))
     {
         //apply wall friction
         
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
+        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index) &amp;&amp; vel_y &gt;=0){
             wall_friction=true;
             /*if(keyboard_check_pressed_any(global.jump)){
                 vel_x-=wall_jump_horizontal*jump_speed;
