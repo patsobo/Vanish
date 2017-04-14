@@ -211,9 +211,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\first_room</room>
     <room>rooms\room1</room>
     <room>rooms\portal_test_room</room>
-    <room>rooms\first_room</room>
     <room>rooms\eye_see_you</room>
     <room>rooms\room7</room>
     <room>rooms\room_intro</room>
