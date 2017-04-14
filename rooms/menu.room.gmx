@@ -11,7 +11,6 @@
   <colour>0</colour>
   <showcolour>-1</showcolour>
   <code>var button = instance_create(room_width / 2, room_height * 6 / 10, obj_button);
-
 button.sprite_index = spr_play_button;
 button.gotoRoom     = rm_level_select;
 
@@ -19,7 +18,7 @@ button.gotoRoom     = rm_level_select;
 button.sprite_index = spr_boss_button;
 button.gotoRoom     = boss_room;
 
-/*var button = instance_create(room_width / 2, room_height * 8 / 10, obj_button);
+var button = instance_create(room_width / 2, room_height * 8 / 10, obj_button);
 button.sprite_index = spr_play_button;
 button.gotoRoom     = room_intro;*/
 
@@ -34,7 +33,6 @@ button_option.gotoRoom     = roomOptions;*/
 /*var button_option = instance_create(room_width / 2, room_height * 8 / 10 + 40, obj_button);
 button_option.sprite_index = sprAbout
 button_option.gotoRoom     = roomAbout;*/</code>
-
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
