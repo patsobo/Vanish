@@ -82,13 +82,13 @@ if(place_meeting(x,y,obj_portal_right))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_number(obj_portal_right) &gt; 0 &amp;&amp; cooldown == 0){
+            <string>teleport(self, obj_portal_right, obj_player);
+/*if (instance_number(obj_portal_right) &gt; 0 &amp;&amp; cooldown == 0){
     cooldown = COOLDOWN_TIMER
     var new_x;
     var new_y;
     var x_offset = 0;
     var y_offset = 0;
-    
     with(obj_portal_right){
         other.new_x = x;
         other.new_y = y;
@@ -221,7 +221,7 @@ if(place_meeting(x,y,obj_portal_right))
         }
     }
 }
-
+*/
 </string>
           </argument>
         </arguments>

@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>portal_direction = 0;
 cooldown = 0;
-COOLDOWN_TIMER = 30;
+COOLDOWN_TIMER = 5;
 image_speed = .2
 image_xscale = 1.5
 
@@ -82,7 +82,8 @@ if(place_meeting(x,y,obj_portal_left))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_number(obj_portal_left) &gt; 0 &amp;&amp; cooldown == 0){
+            <string>teleport(self,obj_portal_left, obj_player);
+/*if (instance_number(obj_portal_left) &gt; 0 &amp;&amp; cooldown == 0){
     cooldown = COOLDOWN_TIMER
     var new_x;
     var new_y;
@@ -221,7 +222,7 @@ if(place_meeting(x,y,obj_portal_left))
         }
     }
 }
-
+*/
 </string>
           </argument>
         </arguments>
