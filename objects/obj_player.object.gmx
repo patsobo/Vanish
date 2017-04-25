@@ -38,26 +38,26 @@ ds_list_add(global.jump, vk_space);
 
 //global.jump = ord('W');
 global.throw = mb_left;
-move_speed = 1.75;
-air_move_speed = .3;
-max_move_speed = 15;
+move_speed = 2.5;
+air_move_speed = .5;
+max_move_speed = 10;
 max_absolute_speed = 40;
-throw_speed = 25;//???
+throw_speed = 30;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
 wall_friction = false;
 
-jump_speed = 8;
+jump_speed = 10.75;
 jump_time = 12;
 steps = 0;
 
-wall_jump_vertical = 1.1;
-wall_jump_horizontal = 1;
+wall_jump_vertical = 1.2;
+wall_jump_horizontal = .9;
 
-dampening = .999;//smaller is more dampening
-frict = .75;//changes the dampening when in contact with the ground
+dampening = .9;//smaller is more dampening
+frict = .65;//changes the dampening when in contact with the ground
 wfrict = .7;//changes the dampening when holding against a wall
 height=36;
 width=18;
@@ -97,21 +97,6 @@ anti_stuck_code();
 vel_x+=gravity_x;
 vel_y+=gravity_y;
 
-//Dampening
-if(abs(vel_x) &lt; .1)
-    vel_x=0;
-vel_x*=dampening;
-//if on ground apply friction
-if (check_collision(x, y+1, object_index))
-    vel_x*=frict;
-if (wall_friction)//holding against a wall
-    vel_y*=wfrict;
-vel_y*=dampening;
-if(abs(vel_x) &gt; max_absolute_speed)
-    vel_x = sign(vel_x)* max_absolute_speed;
-if(abs(vel_y) &gt; max_absolute_speed)
-    vel_y = sign(vel_y)* max_absolute_speed;
-    
 //Update position
 if (check_collision(x + vel_x, y, object_index))
 {
@@ -143,6 +128,23 @@ if(check_collision(x,y+vel_y, object_index))
 }
 else
     y+=vel_y;
+
+
+//Dampening
+if(abs(vel_x) &lt; .2)
+    vel_x=0;
+vel_x*=dampening;
+//if on ground apply friction
+if (check_collision(x, y+1, object_index))
+    vel_x*=frict;
+if (wall_friction)//holding against a wall
+    vel_y*=wfrict;
+vel_y*=dampening;
+if(abs(vel_x) &gt; max_absolute_speed)
+    vel_x = sign(vel_x)* max_absolute_speed;
+if(abs(vel_y) &gt; max_absolute_speed)
+    vel_y = sign(vel_y)* max_absolute_speed;
+    
 
 </string>
           </argument>
@@ -204,7 +206,8 @@ if( keyboard_check(global.left))
     //if( place_meeting(x,y+1,obj_wall))// On ground?
     if (check_collision(x, y+1, object_index))
         vel_x-=move_speed;
-    vel_x-=air_move_speed ;
+    else
+        vel_x-=air_move_speed ;
 }
 
 if(keyboard_check_pressed_any(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
@@ -247,7 +250,8 @@ if( keyboard_check(global.right))
     }
     if(check_collision(x, y+1, object_index))// On ground?
         vel_x+=move_speed;
-    vel_x+=air_move_speed;
+    else
+        vel_x+=air_move_speed;
 }
 
 if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
@@ -332,46 +336,6 @@ if ( check_collision(x+1,y, object_index)){//wall jump
         }
     }
 }
-
-
-
-
-/*if(keyboard_check(global.left_portal))
-{
-    with(obj_portal)
-    {
-        if(sprite_index==spr_left_portal)
-            instance_destroy();
-    }
-    var inst = instance_create(mouse_x,mouse_y,obj_portal);//TODO find wall
-    with(inst)
-    {
-        var del_x = mouse_x-x;
-        var del_y = mouse_y-y;
-        var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-        vel_x=other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
-        vel_y=other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
-        sprite_index=spr_left_portal;
-    }
-}
-if(keyboard_check(global.right_portal))
-{
-    with(obj_portal)
-    {
-        if(sprite_index==spr_right_portal)
-            instance_destroy();
-    }
-    var inst = instance_create(mouse_x,mouse_y,obj_portal);
-    with(inst)
-    {
-        var del_x = mouse_x-x;
-        var del_y = mouse_y-y;
-        var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-        vel_x=other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
-        vel_y=other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
-        sprite_index=spr_right_portal;
-    }
-}*/
 
 </string>
           </argument>

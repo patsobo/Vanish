@@ -159,6 +159,7 @@
       <object>objects\obj_laser</object>
       <object>objects\obj_orb</object>
       <object>objects\obj_laser_crystal</object>
+      <object>objects\obj_grunt</object>
     </objects>
     <objects name="Environment">
       <objects name="Blocks">
@@ -218,6 +219,7 @@
     <room>rooms\room7</room>
     <room>rooms\room_intro</room>
     <room>rooms\room0</room>
+    <room>rooms\demo_room</room>
     <room>rooms\boss_room</room>
     <rooms name="Menus">
       <room>rooms\gameOver</room>

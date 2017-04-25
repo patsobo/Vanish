@@ -24,7 +24,7 @@ if (current_obj == obj_player){
     collision_checks[0] = obj_wall;
     collision_checks[1] = obj_wall_half;    
     
-} else if (current_obj == obj_axe_grunt){
+} else if (current_obj == obj_axe_grunt || current_obj == obj_grunt){
     collision_checks[0] = obj_wall;
     collision_checks[1] = obj_barrier;
     
