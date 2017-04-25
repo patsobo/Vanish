@@ -13,8 +13,8 @@
   <code>/// Make buttons!
 
 var t = instance_create(0,0, obj_title);
-t.text = "The Original";
-
+t.text = "Demo Room";
+/*
 var barriers1;
 var xs1;
 var ys1;
@@ -62,7 +62,8 @@ with(button2){
     x_pos = xs2
     y_pos = ys2
     
-}</code>
+}
+*/</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
