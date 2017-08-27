@@ -134,7 +134,7 @@ y+=y_vel;
           <argument>
             <kind>1</kind>
             <string>if (sprite_index != spr_skull_death){
-    kill_player();
+kill_player();
 }
 </string>
           </argument>

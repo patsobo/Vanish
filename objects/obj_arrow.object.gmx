@@ -37,6 +37,10 @@ frict = 0;
 
 gravity_x = 0;
 gravity_y = 1;
+x_pow = 0;
+y_pow = 0;
+vel_x = 0;
+vel_y = 0;
 
 </string>
           </argument>
@@ -147,7 +151,7 @@ if (abs(vel_y) &lt; .1 &amp;&amp; abs(vel_x) &lt; .1){
           <argument>
             <kind>1</kind>
             <string>if (abs(vel_x) &gt; .1 &amp;&amp; abs(vel_y) &gt; .1){
-    kill_player();
+kill_player();
 }
 </string>
           </argument>

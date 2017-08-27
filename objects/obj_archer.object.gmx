@@ -38,8 +38,11 @@ max_power = 20;
 min_power = 10;
 range[0] = 0;
 range[1] = 180;
+match_x = 0;
+match_y = 0;
 
 alarm[0] = fire_rate;
+image_speed = .2;
 </string>
           </argument>
         </arguments>
@@ -85,11 +88,9 @@ alarm[0] = fire_rate;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Shoot Arrow
-var match_x = 0;
-var match_y = 0;
+            <string>if (distance_to_object(obj_player) &lt; 300){
+    ///Shoot Arrow
 var match = false;
-
 if (!smart){
 //if (1) {
     var arrow = instance_create(x,y,obj_arrow)
@@ -124,14 +125,13 @@ if (!smart){
     }
 }
 if (match){
-    var arrow = instance_create(x,y,obj_arrow)
-    with (arrow){
-        vel_x = x_pow;
-        vel_y = y_pow;
-    }
+        show_debug_message(match_x);
+        show_debug_message(match_y);
+    sprite_index = spr_archer_shoot;
 }
 
-alarm[0] = fire_rate;
+}
+
 </string>
           </argument>
         </arguments>
@@ -187,6 +187,12 @@ if (!check_collision(x,y+1, object_index)){
     }
     vel_y = 0;
 }
+
+if (obj_player.x &lt; x) {
+    image_xscale = -1;
+} else {
+    image_xscale = 1;
+}
 </string>
           </argument>
         </arguments>
@@ -234,6 +240,43 @@ if (!check_collision(x,y+1, object_index)){
             <kind>1</kind>
             <string>if (axe_lethal(other))
     instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (sprite_index == spr_archer_shoot){
+    var arrow = instance_create(x,y,obj_arrow)
+        show_debug_message(match_x);
+        show_debug_message(match_y); 
+        var x_var = match_x;
+        var y_var = match_y; 
+    with (arrow){
+        vel_x = x_var
+        vel_y = y_var;
+        show_debug_message(vel_x);
+        show_debug_message(vel_y);    
+    }
+    sprite_index = spr_archer;
+}
+alarm[0] = fire_rate;
 </string>
           </argument>
         </arguments>

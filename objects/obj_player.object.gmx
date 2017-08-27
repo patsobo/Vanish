@@ -167,7 +167,7 @@ if(abs(vel_y) &gt; max_absolute_speed)
           <argument>
             <kind>1</kind>
             <string>///key presses
-
+if (sprite_index != spr_dying){
 if (x &lt; 1)
     x = 1;
 if (x &gt; room_width-1)
@@ -177,7 +177,8 @@ if (y &lt; 1)
 if (y &gt; room_height-1)
     kill_player();
     
-in_air = !check_collision(x, y+1, object_index)
+in_air = !check_collision(x, y+1, object_index);
+landing = check_collision(x, y+10, object_index);
 wall_friction = false;
 if( keyboard_check(global.left))
 {
@@ -185,10 +186,14 @@ if( keyboard_check(global.left))
         if (in_air){
             sprite_index = spr_jumping;
             image_xscale = -1;
-        } else {
+            if (landing){
+                sprite_index = spr_landing;
+                image_speed = .5;
+            }
+        } else if (sprite_index != spr_landing) {
             sprite_index = spr_walking;
             image_xscale = -1;
-            image_speed = .2;
+            image_speed = .3;
         } 
     }
     if ( check_collision(x-1,y, object_index))//wall jump
@@ -204,7 +209,7 @@ if( keyboard_check(global.left))
         }
     }
     //if( place_meeting(x,y+1,obj_wall))// On ground?
-    if (check_collision(x, y+1, object_index))
+    if (check_collision(x, y+1, object_index) &amp;&amp; sprite_index != spr_landing)
         vel_x-=move_speed;
     else
         vel_x-=air_move_speed ;
@@ -230,10 +235,14 @@ if( keyboard_check(global.right))
         if (in_air){
             sprite_index = spr_jumping;
             image_xscale = 1;
-        } else {
+            if (landing){
+                sprite_index = spr_landing;
+                image_speed = .6;
+            }
+        } else if (sprite_index != spr_landing) {
             sprite_index = spr_walking;
             image_xscale = 1;
-            image_speed = .2;
+            image_speed = .3;
         }   
     }
     if ( check_collision(x+1,y, object_index))//wall jump
@@ -248,7 +257,7 @@ if( keyboard_check(global.right))
             }*/
         }
     }
-    if(check_collision(x, y+1, object_index))// On ground?
+    if(check_collision(x, y+1, object_index) &amp;&amp; sprite_index != spr_landing)// On ground?
         vel_x+=move_speed;
     else
         vel_x+=air_move_speed;
@@ -256,12 +265,18 @@ if( keyboard_check(global.right))
 
 if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
     with(obj_player){
+    if(sprite_index != spr_landing){
         if (in_air){
             sprite_index = spr_jumping;
-        } else {
+            if (landing){
+                sprite_index = spr_landing;
+                image_speed = .5;
+            }
+        } else if (sprite_index != spr_landing) {
             sprite_index = spr_standing;
             image_speed = .2;
-        }     
+        }  
+    }   
     }
 }
 
@@ -336,7 +351,7 @@ if ( check_collision(x+1,y, object_index)){//wall jump
         }
     }
 }
-
+}
 </string>
           </argument>
         </arguments>
@@ -369,6 +384,36 @@ with(obj_portal_right){
 
 with(obj_portal_left){
     instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (sprite_index == spr_landing){
+    sprite_index = spr_standing;
+}
+else if (sprite_index == spr_dying){
+    image_speed = 0;
+    image_index = image_number - 1;
+    instance_create(0,0,obj_fade);
 }
 </string>
           </argument>

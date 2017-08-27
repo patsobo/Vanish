@@ -21,6 +21,8 @@
       <sprite>sprites\spr_flat_right_portal</sprite>
       <sprite>sprites\spr_shield</sprite>
       <sprite>sprites\spr_shield_flashing</sprite>
+      <sprite>sprites\spr_landing</sprite>
+      <sprite>sprites\spr_dying</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprites name="skull">
@@ -43,6 +45,7 @@
       <sprite>sprites\spr_laser_small</sprite>
       <sprite>sprites\spr_calm_crystal</sprite>
       <sprite>sprites\spr_angry_crystal</sprite>
+      <sprite>sprites\spr_archer_shoot</sprite>
     </sprites>
     <sprites name="Environment">
       <sprites name="Blocks">
