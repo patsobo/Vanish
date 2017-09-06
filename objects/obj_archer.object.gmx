@@ -66,6 +66,7 @@ image_speed = .2;
           <argument>
             <kind>1</kind>
             <string>instance_create(x,y+12,obj_bone_pile);
+instance_create(x,y-10, obj_skull);
 </string>
           </argument>
         </arguments>
