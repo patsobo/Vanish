@@ -42,6 +42,7 @@
       <sprite>sprites\spr_spider</sprite>
       <sprite>sprites\spr_orb</sprite>
       <sprite>sprites\spr_laser</sprite>
+      <sprite>sprites\spr_laser_begin</sprite>
       <sprite>sprites\spr_laser_small</sprite>
       <sprite>sprites\spr_calm_crystal</sprite>
       <sprite>sprites\spr_angry_crystal</sprite>

@@ -5,6 +5,7 @@ var pos_y = y;
 
 
 laser[0] = instance_create(pos_x,pos_y,obj_laser)
+laser[0].sprite_index = spr_laser_begin
 
 var width = laser[0].sprite_width;
 
