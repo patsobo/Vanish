@@ -59,6 +59,7 @@
         <sprite>sprites\spr_wall_slit</sprite>
         <sprite>sprites\spr_wall_half</sprite>
         <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_floor</sprite>
       </sprites>
       <sprite>sprites\spr_window</sprite>
       <sprite>sprites\spr_window_rain</sprite>
