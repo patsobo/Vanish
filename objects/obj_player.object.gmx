@@ -35,9 +35,24 @@ global.right_portal = ord('E');
 global.jump = ds_list_create();
 ds_list_add(global.jump, ord('W'));
 ds_list_add(global.jump, vk_space);
-
-//global.jump = ord('W');
 global.throw = mb_left;
+
+has_double_jump = true;
+state_changed = false;
+enum player_states {
+    stationary,
+    running,
+    jumping,
+    wall_slide,
+    wall_jump,
+    double_jump,
+    landing,
+    rolling,
+    death
+}
+
+player_state = player_states.stationary;
+
 move_speed = 2.5;
 air_move_speed = .5;
 max_move_speed = 10;
@@ -59,6 +74,8 @@ wall_jump_horizontal = .9;
 dampening = .9;//smaller is more dampening
 frict = .65;//changes the dampening when in contact with the ground
 wfrict = .7;//changes the dampening when holding against a wall
+minimum_roll_speed = 1;
+min_running_speed = .2;
 height=36;
 width=18;
 
@@ -351,6 +368,380 @@ if ( check_collision(x+1,y, object_index)){//wall jump
         }
     }
 }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Stationary
+if (player_state == player_states.stationary){
+if(state_changed){
+    //TODO:set sprite
+    state_changed = false;
+}
+
+if( keyboard_check(global.left)){
+    if(! keyboard_check(global.right)){
+        vel_x-=move_speed;
+        player_state = player_states.running;
+        state_changed= true;
+        
+    }
+}
+
+if( keyboard_check(global.right)){
+    if(! keyboard_check(global.left)){
+        vel_x+=move_speed;
+        player_state = player_states.running;
+        state_changed= true;
+    }
+}
+
+if (keyboard_check_pressed_any(global.jump)){
+    player_state = player_states.jumping;
+    state_changed= true;
+}
+
+
+
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///running
+if (player_state == player_states.running){
+if(state_changed){
+    //TODO:change animation
+    state_changed = false;
+}
+if( keyboard_check(global.left)){
+    if(! keyboard_check(global.right)){
+        vel_x-=move_speed;        
+    }
+}
+
+if( keyboard_check(global.right)){
+    if(! keyboard_check(global.left)){
+        vel_x+=move_speed;
+    }
+}
+
+if (keyboard_check_pressed_any(global.jump)){
+    player_state = player_states.jumping;
+    state_changed= true;
+}
+
+if(!state_changed){
+    if(abs(vel_x) &lt; min_running_speed){
+        vel_x = 0;
+        state_changed = false;
+        player_state = player_states.stationary;
+    }
+}
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Jumping
+if(player_state = player_states.jumping){
+
+    if( state_changed){
+        //TODO: apply force and whatnot
+        //TODO: animation
+        state_changed = false
+    }
+    if( keyboard_check(global.left)){
+        if(! keyboard_check(global.right)){
+            vel_x-=air_move_speed;        
+        }
+    }
+
+    if( keyboard_check(global.right)){
+        if(! keyboard_check(global.left)){
+            vel_x+=air_move_speed;
+        }
+    }
+
+    if( keyboard_check_pressed_any(global.jump)){
+        if(has_double_jump){
+            state_changed = true;
+            player_state = player_states.double_jump;
+        }
+    }
+
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Landing
+if(player_state == player_states.landing){
+    if( state_changed){
+        if( keyboard_check(global.down) and abs(vel_x) &gt; minimum_roll_speed){//TODO: do we want a minimum roll speed
+            player_state = player_states.rolling;
+            state_changed = true;
+        }
+        else {
+            //Acutally landing
+            //Start animation, apply dampening
+            state_changed = false;
+        }
+    }
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///rolling
+if(player_state == player_states.rolling){
+    if(state_changed) {
+        //TODO: start animation
+        //TODO: physics?
+        state_changed = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///wall_sliding
+if(player_state == player_states.wall_slide){
+    if(state_changed) {
+        //TODO: set sprite
+        state_changed = false;
+    }
+    if( keyboard_check(global.left)){
+        if(! keyboard_check(global.right)){
+            vel_x-=air_move_speed;
+            if(!check_collision(x-1,y,object_index)){
+                player_state = player_states.jumping;
+                state_changed = true;
+            }
+        }
+    }
+    
+    if( keyboard_check(global.right)){
+        if(! keyboard_check(global.left)){
+            vel_x+=air_move_speed;
+            if(!check_collision(x+1,y,object_index)){
+                player_state = player_states.jumping;
+                state_changed = true;
+            }
+        }
+    }
+    
+    if( ! keyboard_check(global.left) and ! keyboard_check(global.right)){
+        player_state = player_states.jumping;
+        state_changed = true;
+    }
+    
+    if( keyboard_check_pressed_any(global.jump)) {
+        state_changed = true;
+        player_state = player_states.wall_jump;
+    }
+    
+    if(!state_changed){
+        vel_y*=wfrict;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///wall_jump
+if(player_state == player_states.wall_jump){
+    if(state_changed){
+        if(check_collision(x+1,y,object_index)){
+            vel_x-=wall_jump_horizontal*jump_speed;
+        }else {
+            vel_x+=wall_jump_horizontal*jump_speed;
+        }
+        vel_y-=wall_jump_vertical*jump_speed;
+        //TODO: start animation
+        state_changed = false;    
+    }
+    
+    if(keyboard_check_pressed_any(global.jump) and has_double_jump){
+        state_changed = true;
+        player_state = player_states.double_jump;
+    }
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///double jump
+if(player_state == player_states.double_jump){
+    if(state_changed){
+        //TODO:Apply force
+        //TODO:Change animation
+        
+        state_changed = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Death
+
+if(player_state == player_states.death){
+    if(state_changed){
+        //TODO:start animation
+        state_changed=false;
+    }
+
 }
 </string>
           </argument>
