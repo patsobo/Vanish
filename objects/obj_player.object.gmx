@@ -46,6 +46,7 @@ enum player_states {
     wall_slide,
     wall_jump,
     double_jump,
+    falling,
     landing,
     rolling,
     death
@@ -107,268 +108,15 @@ vel_y=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Physics
-anti_stuck_code();
+            <string>///Apply general forces
 
-//Gravity
-vel_x+=gravity_x;
 vel_y+=gravity_y;
-
-//Update position
-if (check_collision(x + vel_x, y, object_index))
-{
-    var xn = x;
-    while(!check_collision(xn+sign(vel_x),y, object_index))
-    {   
-        xn += sign(vel_x);
-    }
-    x=xn;
-    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
-        vel_x = 0;
- 
-}
-else
-    x+=vel_x;
-
-
-if(check_collision(x,y+vel_y, object_index))
-{
-    var yn =y;
-    while(!check_collision(x,yn+sign(vel_y), object_index))
-    {
-        yn += sign(vel_y);
-    }
-    y=yn;
-    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
-        vel_y = 0;
-    
-}
-else
-    y+=vel_y;
-
-
-//Dampening
-if(abs(vel_x) &lt; .2)
-    vel_x=0;
 vel_x*=dampening;
-//if on ground apply friction
-if (check_collision(x, y+1, object_index))
-    vel_x*=frict;
-if (wall_friction)//holding against a wall
-    vel_y*=wfrict;
 vel_y*=dampening;
 if(abs(vel_x) &gt; max_absolute_speed)
-    vel_x = sign(vel_x)* max_absolute_speed;
+    vel_x = sign(vel_x) * max_absolute_speed;
 if(abs(vel_y) &gt; max_absolute_speed)
-    vel_y = sign(vel_y)* max_absolute_speed;
-    
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///key presses
-if (sprite_index != spr_dying){
-if (x &lt; 1)
-    x = 1;
-if (x &gt; room_width-1)
-    x = room_width-1;
-if (y &lt; 1)
-    y = 1;
-if (y &gt; room_height-1)
-    kill_player();
-    
-in_air = !check_collision(x, y+1, object_index);
-landing = check_collision(x, y+10, object_index);
-wall_friction = false;
-if( keyboard_check(global.left))
-{
-    with(obj_player){
-        if (in_air){
-            sprite_index = spr_jumping;
-            image_xscale = -1;
-            if (landing){
-                sprite_index = spr_landing;
-                image_speed = .5;
-            }
-        } else if (sprite_index != spr_landing) {
-            sprite_index = spr_walking;
-            image_xscale = -1;
-            image_speed = .3;
-        } 
-    }
-    if ( check_collision(x-1,y, object_index))//wall jump
-    {
-        //apply wall friction
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-        
-            wall_friction=true;
-            /*if(keyboard_check_pressed_any(global.jump)){
-                vel_x+=wall_jump_horizontal*jump_speed;
-                vel_y-=wall_jump_vertical*jump_speed;
-            }*/
-        }
-    }
-    //if( place_meeting(x,y+1,obj_wall))// On ground?
-    if (check_collision(x, y+1, object_index) &amp;&amp; sprite_index != spr_landing)
-        vel_x-=move_speed;
-    else
-        vel_x-=air_move_speed ;
-}
-
-if(keyboard_check_pressed_any(global.jump) &amp;&amp; check_collision(x, y+1, object_index))
-{
-    sprite_index = spr_jumping;
-    jumping = true;
-    steps = 0;
-}
-if(jumping) {
-    steps+=1;
-    if(steps % 2 == 1)
-        vel_y-=(jump_speed/steps);
-}
-if(steps&gt; jump_time || keyboard_check_released_any(global.jump) || check_collision(x, y-1, object_index)){
-    jumping = false;
-}
-if( keyboard_check(global.right))
-{
-    with(obj_player){
-        if (in_air){
-            sprite_index = spr_jumping;
-            image_xscale = 1;
-            if (landing){
-                sprite_index = spr_landing;
-                image_speed = .6;
-            }
-        } else if (sprite_index != spr_landing) {
-            sprite_index = spr_walking;
-            image_xscale = 1;
-            image_speed = .3;
-        }   
-    }
-    if ( check_collision(x+1,y, object_index))//wall jump
-    {
-        //apply wall friction
-        
-        if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-            wall_friction=true;
-            /*if(keyboard_check_pressed_any(global.jump)){
-                vel_x-=wall_jump_horizontal*jump_speed;
-                vel_y-=wall_jump_vertical*jump_speed;
-            }*/
-        }
-    }
-    if(check_collision(x, y+1, object_index) &amp;&amp; sprite_index != spr_landing)// On ground?
-        vel_x+=move_speed;
-    else
-        vel_x+=air_move_speed;
-}
-
-if ( !keyboard_check(global.right) &amp;&amp; !keyboard_check(global.left)) {
-    with(obj_player){
-    if(sprite_index != spr_landing){
-        if (in_air){
-            sprite_index = spr_jumping;
-            if (landing){
-                sprite_index = spr_landing;
-                image_speed = .5;
-            }
-        } else if (sprite_index != spr_landing) {
-            sprite_index = spr_standing;
-            image_speed = .2;
-        }  
-    }   
-    }
-}
-
-
-//if( (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+height,obj_wall)) &amp;&amp; vel_y &lt;= 0 &amp;&amp; keyboard_check(global.jump))
-//{
-//    vel_y-=jump_speed ;
-//}
-if(mouse_check_button_pressed(global.throw))
-{
-    if (ammo &gt; 0){
-        ammo--;
-        var inst = instance_create(x,y,obj_axe);
-        with(inst){
-            var del_x = mouse_x-x;
-            var del_y = mouse_y-y;
-            var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
-            vel_x=other.throw_momentum_percent*other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
-            vel_y=other.throw_momentum_percent*other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
-            image_xscale=sign(vel_x);
-        }
-    }
-}
-
-if (keyboard_check(global.left_portal)){
-    if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
-        with(inst){
-            sprite_index = spr_moving_left_portal;
-            var x_vec = mouse_x - x;
-            var y_vec = mouse_y - y;
-            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
-            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
-            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
-            image_angle = radtodeg(arctan(vel_y / -vel_x));
-            portal_id=0;
-        }
-    }
-}
-
-if (keyboard_check(global.right_portal)){
-    if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
-        with(inst){
-            sprite_index = spr_moving_right_portal;
-            var x_vec = mouse_x - x;
-            var y_vec = mouse_y - y;
-            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
-            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
-            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
-            image_angle = radtodeg(arctan(vel_y / -vel_x));
-            portal_id=1;
-        }
-    }
-}
-//wall jumping
-if ( check_collision(x-1,y, object_index)){//wall jump
-    if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-        if(keyboard_check_pressed_any(global.jump)){
-            vel_x+=wall_jump_horizontal*jump_speed;
-            vel_y-=wall_jump_vertical*jump_speed;
-            wall_friction = false;
-        }
-    }
-}
-if ( check_collision(x+1,y, object_index)){//wall jump
-    if(!jumping &amp;&amp; ! check_collision(x,y+1,object_index)){
-        if(keyboard_check_pressed_any(global.jump)){
-            vel_x-=wall_jump_horizontal*jump_speed;
-            vel_y-=wall_jump_vertical*jump_speed;
-            wall_friction = false;
-        }
-    }
-}
-}
+    vel_y = sign(vel_y) * max_absolute_speed;
 </string>
           </argument>
         </arguments>
@@ -446,8 +194,10 @@ if (keyboard_check_pressed_any(global.jump)){
 if (player_state == player_states.running){
 if(state_changed){
     //TODO:change animation
+    sprite_index = spr_walking;
     state_changed = false;
 }
+vel_x*=frict;
 if( keyboard_check(global.left)){
     if(! keyboard_check(global.right)){
         vel_x-=move_speed;        
@@ -498,8 +248,9 @@ if(!state_changed){
 if(player_state = player_states.jumping){
 
     if( state_changed){
-        //TODO: apply force and whatnot
-        //TODO: animation
+        //TODO: set sprite
+        sprite_index = spr_jumping;
+        steps = 0;
         state_changed = false
     }
     if( keyboard_check(global.left)){
@@ -513,15 +264,61 @@ if(player_state = player_states.jumping){
             vel_x+=air_move_speed;
         }
     }
+    if( keyboard_check_released_any(global.jump) or steps &gt; jump_time or check_collision(x,y-1, object_index)){
+        state_changed = true;
+        player_state = falling;
+    }
+    if( steps% 2 == 1){
+        vel_y-=(jump_speed/steps);
+    }
+    steps++;
 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Falling
+
+if(player_state == player_states.falling){
+    if(state_changed){
+        //TODO: different animation?
+        if(sprite_index == spr_walking)
+            sprite_index = spr_jumping;
+        state_changed = false;
+    }
     if( keyboard_check_pressed_any(global.jump)){
         if(has_double_jump){
             state_changed = true;
             player_state = player_states.double_jump;
         }
     }
-
-
+    if( keyboard_check(global.left)){
+        if(! keyboard_check(global.right)){
+            vel_x-=air_move_speed;        
+        }
+    }
+    if( keyboard_check(global.right)){
+        if(! keyboard_check(global.left)){
+            vel_x+=air_move_speed;
+        }
+    }
 }
 </string>
           </argument>
@@ -546,9 +343,11 @@ if(player_state = player_states.jumping){
             <string>///Landing
 if(player_state == player_states.landing){
     if( state_changed){
+        has_double_jump = true;
         if( keyboard_check(global.down) and abs(vel_x) &gt; minimum_roll_speed){//TODO: do we want a minimum roll speed
             player_state = player_states.rolling;
             state_changed = true;
+            sprite_index = spr_rolling;
         }
         else {
             //Acutally landing
@@ -743,6 +542,70 @@ if(player_state == player_states.death){
     }
 
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Update Position
+
+
+//Update position
+if (check_collision(x + vel_x, y, object_index))
+{
+    var xn = x;
+    while(!check_collision(xn+sign(vel_x),y, object_index))
+    {   
+        xn += sign(vel_x);
+    }
+    x=xn;
+    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
+        vel_x = 0;
+    else if(vel_y &gt;= 0){
+        state_changed=true;
+        player_state = player_states.wall_slide;
+    }
+}
+else
+    x+=vel_x;
+
+
+if(check_collision(x,y+vel_y, object_index))
+{
+    var yn =y;
+    while(!check_collision(x,yn+sign(vel_y), object_index))
+    {
+        yn += sign(vel_y);
+    }
+    y=yn;
+    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
+        vel_y = 0;
+    else if(vel_y &gt;= 0){
+        state_changed = true;
+        player_state = player_states.landing;
+    }
+    
+}
+else
+    y+=vel_y;
+
+
+
 </string>
           </argument>
         </arguments>

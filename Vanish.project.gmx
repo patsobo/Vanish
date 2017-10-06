@@ -26,6 +26,7 @@
       <sprite>sprites\spr_portal_contact</sprite>
       <sprite>sprites\spr_heart</sprite>
       <sprite>sprites\spr_heart_beat</sprite>
+      <sprite>sprites\spr_rolling</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprites name="skull">
