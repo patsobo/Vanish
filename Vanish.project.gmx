@@ -23,6 +23,9 @@
       <sprite>sprites\spr_shield_flashing</sprite>
       <sprite>sprites\spr_landing</sprite>
       <sprite>sprites\spr_dying</sprite>
+      <sprite>sprites\spr_portal_contact</sprite>
+      <sprite>sprites\spr_heart</sprite>
+      <sprite>sprites\spr_heart_beat</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprites name="skull">
@@ -59,6 +62,7 @@
         <sprite>sprites\spr_wall_slit</sprite>
         <sprite>sprites\spr_wall_half</sprite>
         <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_floor</sprite>
       </sprites>
       <sprite>sprites\spr_window</sprite>
       <sprite>sprites\spr_window_rain</sprite>
@@ -87,7 +91,10 @@
       <sprite>sprites\spr_back_button</sprite>
       <sprite>sprites\spr_boss_button</sprite>
       <sprite>sprites\spr_continue_button</sprite>
-      <sprite>sprites\spr_swirl</sprite>
+      <sprite>sprites\spr_cup</sprite>
+      <sprite>sprites\spr_swirl_left</sprite>
+      <sprite>sprites\spr_swirl_right</sprite>
+      <sprite>sprites\spr_swirl_both</sprite>
       <sprite>sprites\spr_level_display</sprite>
     </sprites>
     <sprites name="Boss">

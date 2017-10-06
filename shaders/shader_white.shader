@@ -18,7 +18,8 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 
-//######################_==_YOYO_SHADER_MARKER_==_######################@~//
+//######################_==_YOYO_SHADER_MARKER_==_######################@~
+//
 // Simple passthrough fragment shader
 //
 varying vec2 v_vTexcoord;
@@ -30,7 +31,7 @@ void main()
         gl_FragColor = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
     }
     else{
-        gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+        gl_FragColor = vec4(0.0,0.0,0.0,1.0);
     }
 }
 

@@ -18,7 +18,9 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 
-//######################_==_YOYO_SHADER_MARKER_==_######################@~//
+//######################_==_YOYO_SHADER_MARKER_==_######################@~
+
+//
 // Simple passthrough fragment shader
 //
 varying vec2 v_vTexcoord;
