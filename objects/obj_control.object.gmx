@@ -135,7 +135,6 @@ if (keyboard_check(global.pause) &amp;&amp; !pause_held_down){
     }
     
     randomize();
-    show_debug_message(random(current_time))
     if (floor(random(current_time)) % 9 == 0){
         draw_sprite_ext(spr_heart_beat, 0, 105, window_get_height() - 90, 4.0, 4.0, 0, c_white, 1)
     } else {

@@ -38,7 +38,6 @@ ds_list_add(global.jump, vk_space);
 global.throw = mb_left;
 
 has_double_jump = true;
-state_changed = false;
 enum player_states {
     stationary,
     running,
@@ -53,6 +52,7 @@ enum player_states {
 }
 
 player_state = player_states.stationary;
+state_changed = true;
 
 move_speed = 2.5;
 air_move_speed = .5;
@@ -109,10 +109,14 @@ vel_y=0;
           <argument>
             <kind>1</kind>
             <string>///Apply general forces
-
-vel_y+=gravity_y;
-vel_x*=dampening;
+show_debug_message(player_state);
+if(player_state != player_states.stationary and player_state != player_states.running and 
+    player_state != player_states.rolling and player_state != player_states.landing){
+    vel_y+=gravity_y;
+}
 vel_y*=dampening;
+vel_x*=dampening;
+
 if(abs(vel_x) &gt; max_absolute_speed)
     vel_x = sign(vel_x) * max_absolute_speed;
 if(abs(vel_y) &gt; max_absolute_speed)
@@ -137,12 +141,82 @@ if(abs(vel_y) &gt; max_absolute_speed)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Constant Keypresses
+
+if(mouse_check_button_pressed(global.throw))
+{
+    if (ammo &gt; 0){
+        ammo--;
+        var inst = instance_create(x,y,obj_axe);
+        with(inst){
+            var del_x = mouse_x-x;
+            var del_y = mouse_y-y;
+            var x_percent =abs(del_x)/(abs(del_x)+abs(del_y));
+            vel_x=other.throw_momentum_percent*other.vel_x+sign(del_x)*abs(x_percent*other.throw_speed);
+            vel_y=other.throw_momentum_percent*other.vel_y+sign(del_y)*abs((1-x_percent)*other.throw_speed);
+            image_xscale=sign(vel_x);
+        }
+    }
+}
+
+if (keyboard_check(global.left_portal)){
+    if (instance_number(obj_moving_portal) &lt; 1){
+        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
+        with(inst){
+            sprite_index = spr_moving_left_portal;
+            var x_vec = mouse_x - x;
+            var y_vec = mouse_y - y;
+            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+            image_angle = radtodeg(arctan(vel_y / -vel_x));
+            portal_id=0;
+        }
+    }
+}
+
+if (keyboard_check(global.right_portal)){
+    if (instance_number(obj_moving_portal) &lt; 1){
+        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
+        with(inst){
+            sprite_index = spr_moving_right_portal;
+            var x_vec = mouse_x - x;
+            var y_vec = mouse_y - y;
+            var x_percent = abs(x_vec)/(abs(x_vec)+abs(y_vec));
+            vel_x = sign(x_vec)*abs(x_percent * travel_speed);
+            vel_y = sign(y_vec)*abs((1-x_percent) * travel_speed);
+            image_angle = radtodeg(arctan(vel_y / -vel_x));
+            portal_id=1;
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Stationary
-if (player_state == player_states.stationary){
+if (player_state == player_states.stationary and player_state != player_states.death){
 if(state_changed){
     //TODO:set sprite
     state_changed = false;
-    sprite_index = spr_walking;
+    sprite_index = spr_standing;
     image_speed = .2;
 }
 
@@ -168,7 +242,10 @@ if (keyboard_check_pressed_any(global.jump)){
     state_changed= true;
 }
 
-
+if (!check_collision(x,y+1, object_index)){
+    player_state = player_states.falling;
+    state_changed = true;
+}
 
 
 }
@@ -193,7 +270,7 @@ if (keyboard_check_pressed_any(global.jump)){
           <argument>
             <kind>1</kind>
             <string>///running
-if (player_state == player_states.running){
+if (player_state == player_states.running and player_state != player_states.death){
 if(state_changed){
     //TODO:change animation
     sprite_index = spr_walking;
@@ -215,6 +292,11 @@ if( keyboard_check(global.right)){
     }
 }
 
+if (!check_collision(x,y+1, object_index)){
+    player_state = player_states.falling;
+    state_changed = true;
+}
+
 if (keyboard_check_pressed_any(global.jump)){
     player_state = player_states.jumping;
     state_changed= true;
@@ -223,7 +305,7 @@ if (keyboard_check_pressed_any(global.jump)){
 if(!state_changed){
     if(abs(vel_x) &lt; min_running_speed){
         vel_x = 0;
-        state_changed = false;
+        state_changed = true;
         player_state = player_states.stationary;
     }
 }
@@ -250,7 +332,7 @@ if(!state_changed){
           <argument>
             <kind>1</kind>
             <string>///Jumping
-if(player_state = player_states.jumping){
+if(player_state = player_states.jumping and player_state != player_states.death){
 
     if( state_changed){
         //TODO: set sprite
@@ -273,7 +355,7 @@ if(player_state = player_states.jumping){
     }
     if( keyboard_check_released_any(global.jump) or steps &gt; jump_time or check_collision(x,y-1, object_index)){
         state_changed = true;
-        player_state = falling;
+        player_state = player_states.falling;
     }
     if( steps% 2 == 1){
         vel_y-=(jump_speed/steps);
@@ -303,7 +385,7 @@ if(player_state = player_states.jumping){
             <kind>1</kind>
             <string>///Falling
 
-if(player_state == player_states.falling){
+if(player_state == player_states.falling and player_state != player_states.death){
     if(state_changed){
         //TODO: different animation?
         if(sprite_index == spr_walking)
@@ -348,7 +430,7 @@ if(player_state == player_states.falling){
           <argument>
             <kind>1</kind>
             <string>///Landing
-if(player_state == player_states.landing){
+if(player_state == player_states.landing and player_state != player_states.death){
     if( state_changed){
         has_double_jump = true;
         if( keyboard_check(global.down) and abs(vel_x) &gt; minimum_roll_speed){//TODO: do we want a minimum roll speed
@@ -356,12 +438,13 @@ if(player_state == player_states.landing){
             state_changed = true;
         }
         else {
-            //Acutally landing
-            //Start animation, apply dampening
+            //TODO:apply dampening
             sprite_index = spr_landing;
             image_speed = .6;
             state_changed = false;
         }
+    }else {
+        vel_x*=.5;
     }
     
 }
@@ -386,7 +469,7 @@ if(player_state == player_states.landing){
           <argument>
             <kind>1</kind>
             <string>///rolling
-if(player_state == player_states.rolling){
+if(player_state == player_states.rolling and player_state != player_states.death){
     if(state_changed) {
         //TODO: start animation
         //TODO: physics?
@@ -416,7 +499,7 @@ if(player_state == player_states.rolling){
           <argument>
             <kind>1</kind>
             <string>///wall_sliding
-if(player_state == player_states.wall_slide){
+if(player_state == player_states.wall_slide and player_state != player_states.death){
     if(state_changed) {
         //TODO: make sprite
         state_changed = false;
@@ -476,7 +559,7 @@ if(player_state == player_states.wall_slide){
           <argument>
             <kind>1</kind>
             <string>///wall_jump
-if(player_state == player_states.wall_jump){
+if(player_state == player_states.wall_jump and player_state != player_states.death){
     if(state_changed){
         if(check_collision(x+1,y,object_index)){
             vel_x-=wall_jump_horizontal*jump_speed;
@@ -516,7 +599,7 @@ if(player_state == player_states.wall_jump){
           <argument>
             <kind>1</kind>
             <string>///double jump
-if(player_state == player_states.double_jump){
+if(player_state == player_states.double_jump and player_state != player_states.death){
     if(state_changed){
         //TODO:Apply force
         //TODO:Change animation
@@ -577,7 +660,6 @@ if(player_state == player_states.death){
             <string>///Update Position
 
 
-//Update position
 if (check_collision(x + vel_x, y, object_index))
 {
     var xn = x;
@@ -588,7 +670,7 @@ if (check_collision(x + vel_x, y, object_index))
     x=xn;
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
         vel_x = 0;
-    else if(vel_y &gt;= 0){
+    if(vel_y &gt;= 0 and player_state!=player_states.death){
         state_changed=true;
         player_state = player_states.wall_slide;
     }
@@ -607,7 +689,7 @@ if(check_collision(x,y+vel_y, object_index))
     y=yn;
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
         vel_y = 0;
-    else if(vel_y &gt;= 0){
+    if(player_state!=player_states.death){
         state_changed = true;
         player_state = player_states.landing;
     }
@@ -682,7 +764,7 @@ if (player_state == player_states.rolling){
     state_changed = true;
 }
 
-if (player_state = player_states.death){
+if (player_state == player_states.death){
     image_speed = 0;
     image_index = image_number - 1;
     instance_create(0,0,obj_fade);
