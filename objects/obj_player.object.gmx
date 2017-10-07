@@ -142,6 +142,8 @@ if (player_state == player_states.stationary){
 if(state_changed){
     //TODO:set sprite
     state_changed = false;
+    sprite_index = spr_walking;
+    image_speed = .2;
 }
 
 if( keyboard_check(global.left)){
@@ -196,17 +198,20 @@ if(state_changed){
     //TODO:change animation
     sprite_index = spr_walking;
     state_changed = false;
+    image_speed = .3;
 }
 vel_x*=frict;
 if( keyboard_check(global.left)){
     if(! keyboard_check(global.right)){
         vel_x-=move_speed;        
+        image_xscale = -1;
     }
 }
 
 if( keyboard_check(global.right)){
     if(! keyboard_check(global.left)){
         vel_x+=move_speed;
+        image_xscale = 1;
     }
 }
 
@@ -255,13 +260,15 @@ if(player_state = player_states.jumping){
     }
     if( keyboard_check(global.left)){
         if(! keyboard_check(global.right)){
-            vel_x-=air_move_speed;        
+            vel_x-=air_move_speed;   
+            image_xscale = -1;     
         }
     }
 
     if( keyboard_check(global.right)){
         if(! keyboard_check(global.left)){
             vel_x+=air_move_speed;
+            image_xscale = -1;
         }
     }
     if( keyboard_check_released_any(global.jump) or steps &gt; jump_time or check_collision(x,y-1, object_index)){
@@ -347,11 +354,12 @@ if(player_state == player_states.landing){
         if( keyboard_check(global.down) and abs(vel_x) &gt; minimum_roll_speed){//TODO: do we want a minimum roll speed
             player_state = player_states.rolling;
             state_changed = true;
-            sprite_index = spr_rolling;
         }
         else {
             //Acutally landing
             //Start animation, apply dampening
+            sprite_index = spr_landing;
+            image_speed = .6;
             state_changed = false;
         }
     }
@@ -382,6 +390,8 @@ if(player_state == player_states.rolling){
     if(state_changed) {
         //TODO: start animation
         //TODO: physics?
+            sprite_index = spr_rolling;
+            image_speed = 1;
         state_changed = false;
     }
 }
@@ -408,7 +418,7 @@ if(player_state == player_states.rolling){
             <string>///wall_sliding
 if(player_state == player_states.wall_slide){
     if(state_changed) {
-        //TODO: set sprite
+        //TODO: make sprite
         state_changed = false;
     }
     if( keyboard_check(global.left)){
@@ -474,7 +484,8 @@ if(player_state == player_states.wall_jump){
             vel_x+=wall_jump_horizontal*jump_speed;
         }
         vel_y-=wall_jump_vertical*jump_speed;
-        //TODO: start animation
+        sprite_index = spr_jumping;
+        //TODO: make &amp; start animation
         state_changed = false;    
     }
     
@@ -537,6 +548,7 @@ if(player_state == player_states.double_jump){
 
 if(player_state == player_states.death){
     if(state_changed){
+        sprite_index = spr_dying;
         //TODO:start animation
         state_changed=false;
     }
@@ -661,10 +673,16 @@ with(obj_portal_left){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index == spr_landing){
-    sprite_index = spr_standing;
+            <string>if (player_state == player_states.landing){
+    player_state = player_states.stationary;
+    state_changed = true;
 }
-else if (sprite_index == spr_dying){
+if (player_state == player_states.rolling){
+    player_state = player_states.running;
+    state_changed = true;
+}
+
+if (player_state = player_states.death){
     image_speed = 0;
     image_index = image_number - 1;
     instance_create(0,0,obj_fade);
