@@ -12,7 +12,9 @@ if (current_obj == obj_player){
     ds_list_add(collision_checks, obj_wall_half);
     with(current_obj){
         if(vel_y >= 0 && !place_meeting(x,y,obj_platform)){
+            if(!keyboard_check(global.down)){
                 ds_list_add(collision_checks, obj_platform);
+            }
         }
     }
     
