@@ -10,6 +10,11 @@ if (current_obj == obj_player){
     collision_checks[5] = obj_orb;
     collision_checks[6] = obj_wall_slit;
     collision_checks[7] = obj_wall_half;
+    with(obj_player){
+        if(vel_y >= 0 && !place_meeting(x,y,obj_platform)){
+            collision_checks[8] = obj_platform;
+        }
+    }
     
 } else if (current_obj == obj_axe){
     collision_checks[0] = obj_wall;
