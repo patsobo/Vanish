@@ -112,6 +112,8 @@ vel_y=0;
 if(player_state != player_states.stationary and player_state != player_states.running and 
     player_state != player_states.rolling and player_state != player_states.landing){
     vel_y+=gravity_y;
+}else{
+    vel_y = 0;
 }
 vel_y*=dampening;
 vel_x*=dampening;
@@ -669,7 +671,7 @@ if (check_collision(x + vel_x, y, object_index))
     x=xn;
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
         vel_x = 0;
-    if(vel_y &gt;= 0 and player_state!=player_states.death){//Moving Down
+    if(vel_y &gt; 0 and player_state!=player_states.death){//Moving Down
         state_changed=true;
         player_state = player_states.wall_slide;
     }
