@@ -109,7 +109,6 @@ vel_y=0;
           <argument>
             <kind>1</kind>
             <string>///Apply general forces
-show_debug_message(player_state);
 if(player_state != player_states.stationary and player_state != player_states.running and 
     player_state != player_states.rolling and player_state != player_states.landing){
     vel_y+=gravity_y;
@@ -670,7 +669,7 @@ if (check_collision(x + vel_x, y, object_index))
     x=xn;
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
         vel_x = 0;
-    if(vel_y &gt;= 0 and player_state!=player_states.death){
+    if(vel_y &gt;= 0 and player_state!=player_states.death){//Moving Down
         state_changed=true;
         player_state = player_states.wall_slide;
     }
@@ -687,18 +686,15 @@ if(check_collision(x,y+vel_y, object_index))
         yn += sign(vel_y);
     }
     y=yn;
-    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
-        vel_y = 0;
-    if(player_state!=player_states.death){
+    if(player_state!=player_states.death &amp;&amp; vel_y &gt; 0){
         state_changed = true;
         player_state = player_states.landing;
     }
-    
+    if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
+        vel_y = 0;
 }
 else
     y+=vel_y;
-
-
 
 </string>
           </argument>
