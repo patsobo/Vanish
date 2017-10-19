@@ -53,8 +53,7 @@ facing = 0;
           <argument>
             <kind>1</kind>
             <string>
-x = x + vel_x;
-y = y + vel_y;
+
 
 if (x &gt; room_width || x &lt; 0 || y &lt; 0 || y &gt; room_height){
     instance_destroy();
@@ -71,8 +70,13 @@ if(check_collision(x+vel_x,y, object_index))
     {
         xn += sign(vel_x);
     }
-}
+    if(sign(vel_x&gt;0))
+        x=floor(xn);
+    else
+        x = ceil(xn);
 
+}else
+    x = x + vel_x;
 if(check_collision(x,y+vel_y,object_index))
 {
     collision+=2;
@@ -80,15 +84,14 @@ if(check_collision(x,y+vel_y,object_index))
     {
         yn += sign(vel_y);
     }
+    if(sign(vel_y&gt;0))
+        y=floor(yn);
+    else
+        y= ceil(yn);
+
+}else{
+    y = y + vel_y;
 }
-if(sign(vel_x&gt;0))
-    x=floor(xn);
-else
-    x = ceil(xn);
-if(sign(vel_y&gt;0))
-    y=floor(yn);
-else
-    y= ceil(yn);
 
 
 

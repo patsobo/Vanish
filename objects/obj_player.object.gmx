@@ -162,7 +162,7 @@ if(mouse_check_button_pressed(global.throw))
 
 if (keyboard_check(global.left_portal)){
     if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
+        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
         with(inst){
             sprite_index = spr_moving_left_portal;
             var x_vec = mouse_x - x;
@@ -178,7 +178,7 @@ if (keyboard_check(global.left_portal)){
 
 if (keyboard_check(global.right_portal)){
     if (instance_number(obj_moving_portal) &lt; 1){
-        var inst = instance_create(x,y+5,obj_moving_portal);//TODO find wall
+        var inst = instance_create(x,y,obj_moving_portal);//TODO find wall
         with(inst){
             sprite_index = spr_moving_right_portal;
             var x_vec = mouse_x - x;
