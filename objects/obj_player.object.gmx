@@ -215,7 +215,6 @@ if (keyboard_check(global.right_portal)){
             <string>///Stationary
 if (player_state == player_states.stationary and player_state != player_states.death){
 if(state_changed){
-    //TODO:set sprite
     state_changed = false;
     sprite_index = spr_standing;
     image_speed = .2;
@@ -273,7 +272,6 @@ if (!check_collision(x,y+1, object_index)){
             <string>///running
 if (player_state == player_states.running and player_state != player_states.death){
 if(state_changed){
-    //TODO:change animation
     sprite_index = spr_walking;
     state_changed = false;
     image_speed = .3;
@@ -336,7 +334,6 @@ if(!state_changed){
 if(player_state = player_states.jumping and player_state != player_states.death){
 
     if( state_changed){
-        //TODO: set sprite
         sprite_index = spr_jumping;
         steps = 0;
         state_changed = false
@@ -633,7 +630,6 @@ if(player_state == player_states.double_jump and player_state != player_states.d
 if(player_state == player_states.death){
     if(state_changed){
         sprite_index = spr_dying;
-        //TODO:start animation
         state_changed=false;
     }
 
