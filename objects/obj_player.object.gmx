@@ -506,7 +506,7 @@ if(player_state == player_states.wall_slide and player_state != player_states.de
         if(! keyboard_check(global.right)){
             vel_x-=air_move_speed;
             if(!check_collision(x-1,y,object_index)){
-                player_state = player_states.jumping;
+                player_state = player_states.falling;
                 state_changed = true;
             }
         }
@@ -516,18 +516,18 @@ if(player_state == player_states.wall_slide and player_state != player_states.de
         if(! keyboard_check(global.left)){
             vel_x+=air_move_speed;
             if(!check_collision(x+1,y,object_index)){
-                player_state = player_states.jumping;
+                player_state = player_states.falling;
                 state_changed = true;
             }
         }
     }
     
     if( ! keyboard_check(global.left) and ! keyboard_check(global.right)){
-        player_state = player_states.jumping;
+        player_state = player_states.falling;
         state_changed = true;
     }
     
-    if( keyboard_check_pressed_any(global.jump)) {
+    if( keyboard_check_pressed_any(global.jump) || (keyboard_check(global.left) and keyboard_check(global.right))) {
         state_changed = true;
         player_state = player_states.wall_jump;
     }
@@ -656,15 +656,10 @@ if(player_state == player_states.death){
             <kind>1</kind>
             <string>///Update Position
 
-
-if (check_collision(x + vel_x, y, object_index))
-{
-    var xn = x;
-    while(!check_collision(xn+sign(vel_x),y, object_index))
-    {   
-        xn += sign(vel_x);
-    }
-    x=xn;
+result = move(object_index, vel_x,vel_y);
+vert_col = result % 2 == 1;
+horz_col = (result div 2) % 2 == 1;
+if (horz_col){
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || x==xprevious)
         vel_x = 0;
     if(vel_y &gt; 0 and player_state!=player_states.death){//Moving Down
@@ -672,18 +667,8 @@ if (check_collision(x + vel_x, y, object_index))
         player_state = player_states.wall_slide;
     }
 }
-else
-    x+=vel_x;
 
-
-if(check_collision(x,y+vel_y, object_index))
-{
-    var yn =y;
-    while(!check_collision(x,yn+sign(vel_y), object_index))
-    {
-        yn += sign(vel_y);
-    }
-    y=yn;
+if(vert_col){
     if(player_state!=player_states.death &amp;&amp; vel_y &gt; 0){
         state_changed = true;
         player_state = player_states.landing;
@@ -691,9 +676,6 @@ if(check_collision(x,y+vel_y, object_index))
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
         vel_y = 0;
 }
-else
-    y+=vel_y;
-
 </string>
           </argument>
         </arguments>
