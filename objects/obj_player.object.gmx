@@ -57,22 +57,20 @@ state_changed = true;
 move_speed = 2.5;
 air_move_speed = .5;
 max_move_speed = 10;
-max_absolute_speed = 40;
+max_absolute_speed = 100;
 throw_speed = 30;//???
 throw_momentum_percent = .5;
 MAX_AMMO = 5;
 ammo = MAX_AMMO;
 in_air = false;
 wall_friction = false;
-
-jump_speed = 10.75;
+jump_speed = 9;
+double_jump_speed = 9;
 jump_time = 12;
 steps = 0;
-
 wall_jump_vertical = 1.2;
 wall_jump_horizontal = .9;
-
-dampening = .9;//smaller is more dampening
+dampening = .99;//smaller is more dampening
 frict = .65;//changes the dampening when in contact with the ground
 wfrict = .7;//changes the dampening when holding against a wall
 minimum_roll_speed = 1;
@@ -81,7 +79,7 @@ height=36;
 width=18;
 
 gravity_x = 0;
-gravity_y =1;
+gravity_y = .8;
 
 jumping = false;
 vel_x=0;
@@ -348,7 +346,7 @@ if(player_state = player_states.jumping and player_state != player_states.death)
     if( keyboard_check(global.right)){
         if(! keyboard_check(global.left)){
             vel_x+=air_move_speed;
-            image_xscale = -1;
+            image_xscale = 1;
         }
     }
     if( keyboard_check_released_any(global.jump) or steps &gt; jump_time or check_collision(x,y-1, object_index)){
@@ -567,12 +565,8 @@ if(player_state == player_states.wall_jump and player_state != player_states.dea
         vel_y-=wall_jump_vertical*jump_speed;
         sprite_index = spr_jumping;
         //TODO: make &amp; start animation
-        state_changed = false;    
-    }
-    
-    if(keyboard_check_pressed_any(global.jump) and has_double_jump){
         state_changed = true;
-        player_state = player_states.double_jump;
+        player_state = player_states.falling;
     }
     
 }
@@ -599,10 +593,13 @@ if(player_state == player_states.wall_jump and player_state != player_states.dea
             <string>///double jump
 if(player_state == player_states.double_jump and player_state != player_states.death){
     if(state_changed){
-        //TODO:Apply force
         //TODO:Change animation
-        
-        state_changed = false;
+        if(vel_y &gt;0){
+            vel_y = 0;
+        }
+        has_double_jump =false;
+        vel_y -=double_jump_speed;
+        player_state = player_states.falling;
     }
 }
 </string>
@@ -676,6 +673,7 @@ if(vert_col){
     if(!place_meeting(x,y,obj_portal_left) &amp;&amp; ! place_meeting(x,y,obj_portal_right) || y==yprevious)
         vel_y = 0;
 }
+
 </string>
           </argument>
         </arguments>
